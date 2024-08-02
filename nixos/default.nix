@@ -31,15 +31,15 @@
         self.nixosModules.home-manager
         self.nixosModules.my-home
         self.nixosModules.common
-        
+
         # audio
         ./pipewire.nix
-        
+
         # common interfaces
         ./keyboard.nix
         ./locale.nix
         ./printer.nix
-        
+
         # set zsh as default shell
         ./zsh.nix
       ];

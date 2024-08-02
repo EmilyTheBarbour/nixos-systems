@@ -11,7 +11,7 @@ in
 
     # Select GPU Hardware
     ../nixos/system/nvidia.nix
-    
+
     # Select Desktop Environment
     ../nixos/de/gnome.nix
     # ../nixos/de/sway.nix
@@ -19,8 +19,8 @@ in
 
   # Define the identifies for this system
   nixos-flake.sshTarget = "emily@personal-pc";
-  system.stateVersion = "24.05"; 
-  
+  system.stateVersion = "24.05";
+
   # Configure Networking
   networking.hostName = "personal-pc";
   networking.networkmanager.enable = true;

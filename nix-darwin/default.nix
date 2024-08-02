@@ -15,7 +15,7 @@
       };
 
       # Specialized set of inputs specifically for Darwin
-      default.imports = [ 
+      default.imports = [
         # core set of darwin modules
         self.darwinModules_.home-manager
         self.darwinModules.my-home

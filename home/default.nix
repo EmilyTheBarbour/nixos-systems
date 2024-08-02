@@ -6,6 +6,7 @@
       common = {
         home.stateVersion = "24.05";
         imports = [
+          ./git.nix
         ];
       };
 
@@ -14,23 +15,14 @@
         imports = [
           self.homeModules.common
           ./vscode.nix
+          ./terminator.nix
+          ./zsh.nix
           ({ config, pkgs, ... }: {
             home.packages = with pkgs; [
               # memes
               cowsay
               fortune
               lolcat
-
-              # zsh configuration
-              nerdfonts
-              meslo-lgs-nf
-              zsh-powerlevel10k
-
-              # automagic path injection for graphics drivers
-              # nixgl.auto.nixGLDefault
-              # nixgl.auto.nixVulkanNvidia
-
-              # glxinfo
             ];
 
             programs.firefox.enable = true;
@@ -53,25 +45,6 @@
             programs.obs-studio.enable = true;
             programs.thefuck.enable = true;
             programs.yt-dlp.enable = true;
-
-            programs.git.enable = true;
-            programs.git.userEmail = "emilythebarbour@gmail.com";
-            programs.git.userName = "Emily Barbour";
-
-            programs.terminator.enable = true;
-            programs.terminator.config = {
-              profiles.default.font = "MesloLGS Nerd Font Regular 12";
-              profiles.default.use_system_font = false;
-            };
-
-            programs.zsh.enable = true;
-            programs.zsh.initExtra = ''
-              source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-              source ${../config/.p10k.zsh}
-            '';
-            programs.zsh.shellAliases = {
-              switch = "sudo nixos-rebuild switch --flake /home/emily/config --impure";
-            };
           })
         ];
       };

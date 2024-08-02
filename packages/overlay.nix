@@ -1,5 +1,3 @@
-{flake, system, ...}:
+{ flake, system, ... }:
 
-self: super: {
-  
-}
+self: super: { }

@@ -5,6 +5,6 @@
       email = "emilythebarbour@gmail.com";
     };
   };
-  
+
   myself = "emily";
 }

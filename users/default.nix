@@ -3,7 +3,7 @@
 with lib;
 with types;
 
-let 
+let
   # Define a user, which provides the ability to contextualize other nix flake modules
   userSubmodule = submodule {
     options = {
@@ -15,18 +15,18 @@ let
       };
     };
   };
-  
+
   # this repository has a list of users, and one marked as the main user (i.e me)
   peopleSubmodule = submodule {
     options = {
       # the key for this attrset is their username
       users = mkOption {
-        type = attrsOf userSubmodule; 
+        type = attrsOf userSubmodule;
       };
       myself = mkOption {
         type = str;
         description = ''
-        The name of the user which represents myself. 
+          The name of the user which represents myself. 
         '';
       };
     };

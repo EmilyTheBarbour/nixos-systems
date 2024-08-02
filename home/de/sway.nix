@@ -21,7 +21,7 @@
         command = "waybar";
         position = "bottom";
       }];
-      
+
       output = {
         DP-1 = {
           scale = "1";
