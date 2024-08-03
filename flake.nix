@@ -36,6 +36,21 @@
       flake = {
         nixosConfigurations.personal-pc = self.nixos-flake.lib.mkLinuxSystem ./systems/personal-pc.nix;
         nixosConfigurations.wsl-env = self.nixos-flake.lib.mkLinuxSystem ./systems/nixos-wsl.nix;
+        
+        
+        homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
+          (import inputs.nixpkgs {
+            system = "x86_64-linux"; 
+            config = {
+              allowUnfree = true;
+            };
+
+            overlays = with inputs; [
+              nur.overlay
+              nix-vscode-extensions.overlays.default
+              inputs.nixgl.overlay
+            ];
+          }) ./systems/non-nixos-pc.nix;
       };
 
       # for each system above, build out the workflow of developing, updating, and activating a system.
@@ -56,8 +71,8 @@
         };
 
         # Define a home-manager system that will work across all target architectures for any linux system
-        legacyPackages.homeConfigurations.${config.people.myself} = inputs.self.nixos-flake.lib.mkHomeConfiguration
-          pkgs ./systems/non-nixos-pc.nix;
+        # legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
+        #   pkgs ./systems/non-nixos-pc.nix;
 
         # provides the ability to nix run to activate the resultant nixOS configuration
         # by default, it will choose the configuration who's host name matches, otherwise
