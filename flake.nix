@@ -7,13 +7,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # additional inputs which we will track at a less frequent cadence
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
-
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixgl.url = "github:nix-community/nixGL";
   };
 
@@ -72,6 +71,7 @@
             "nixos-flake"
             "nur"
             "nixos-wsl"
+            "nix-vscode-extensions"
           ];
         };
 
