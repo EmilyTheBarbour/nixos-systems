@@ -17,6 +17,7 @@
           ./vscode.nix
           ./terminator.nix
           ./zsh.nix
+          ./firefox.nix
           ({ config, pkgs, ... }: {
             home.packages = with pkgs; [
               # memes
@@ -25,7 +26,6 @@
               lolcat
             ];
 
-            programs.firefox.enable = true;
             programs.autojump.enable = true;
             programs.bat.enable = true;
             programs.bottom.enable = true;

@@ -18,7 +18,6 @@
         home-manager.users.${config.people.myself} = {
           imports = [
             self.homeModules.common-linux
-            # ../home/de/sway.nix
           ];
         };
 
@@ -42,6 +41,12 @@
 
         # set zsh as default shell
         ./zsh.nix
+        
+        # gaming
+        ./steam.nix
+        
+        # android emulation
+        ./waydroid.nix
       ];
     };
   };

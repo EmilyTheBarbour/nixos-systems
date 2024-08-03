@@ -11,6 +11,7 @@ in
       (import ../packages/overlay.nix { inherit flake; inherit (pkgs) system; })
       inputs.nixgl.overlay
       inputs.nix-vscode-extensions.overlays.default
+      inputs.nur.overlay
     ];
   };
 

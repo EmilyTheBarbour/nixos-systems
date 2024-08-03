@@ -6,6 +6,8 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nur.url = "github:nix-community/NUR";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # additional inputs which we will track at a less frequent cadence
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -33,6 +35,7 @@
       # the list of configurations
       flake = {
         nixosConfigurations.personal-pc = self.nixos-flake.lib.mkLinuxSystem ./systems/personal-pc.nix;
+        nixosConfigurations.wsl-env = self.nixos-flake.lib.mkLinuxSystem ./systems/nixos-wsl.nix;
       };
 
       # for each system above, build out the workflow of developing, updating, and activating a system.
@@ -47,8 +50,14 @@
             "home-manager"
             "nix-darwin"
             "nixos-flake"
+            "nur"
+            "nixos-wsl"
           ];
         };
+
+        # Define a home-manager system that will work across all target architectures for any linux system
+        legacyPackages.homeConfigurations.${config.people.myself} = inputs.self.nixos-flake.lib.mkHomeConfiguration
+          pkgs ./systems/non-nixos-pc.nix;
 
         # provides the ability to nix run to activate the resultant nixOS configuration
         # by default, it will choose the configuration who's host name matches, otherwise
