@@ -11,7 +11,7 @@
     enable = true;
     initExtra = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${../config/.p10k.zsh}
+      source ${../config/p10k.zsh}
     '';
   };
 }
