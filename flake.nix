@@ -38,6 +38,11 @@
         nixosConfigurations.wsl-env = self.nixos-flake.lib.mkLinuxSystem ./systems/nixos-wsl.nix;
         
         
+        # TODO(emily): figure out how we can reasonably get access to flake-parts modules
+        # config.people.myself
+        # TODO(emily): is this the best way to handle overlays? There seems to be a schism
+        # between how NixOS based systems handle overlays with the module option, and how
+        # other types of systems apply them.
         homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
           (import inputs.nixpkgs {
             system = "x86_64-linux"; 
