@@ -4,6 +4,7 @@
     cowsay
     fortune
     lolcat
+    python3
   ];
 
   programs.autojump.enable = true;

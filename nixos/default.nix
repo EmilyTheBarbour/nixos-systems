@@ -35,7 +35,7 @@
         ./pipewire.nix
 
         # common interfaces
-        ./keyboard.nix
+        ./input.nix
         ./locale.nix
         ./printer.nix
 
