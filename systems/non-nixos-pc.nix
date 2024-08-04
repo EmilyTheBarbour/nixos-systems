@@ -12,4 +12,7 @@ in
 
   home.username = flake.config.people.myself;
   home.homeDirectory = "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/${flake.config.people.myself}";
+  
+  # allow home-manager to manage fonts
+  fonts.fontconfig.enable = true;
 }
