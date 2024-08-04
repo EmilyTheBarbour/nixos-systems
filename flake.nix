@@ -42,19 +42,19 @@
         # TODO(emily): is this the best way to handle overlays? There seems to be a schism
         # between how NixOS based systems handle overlays with the module option, and how
         # other types of systems apply them.
-        homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
-          (import inputs.nixpkgs {
-            system = "x86_64-linux"; 
-            config = {
-              allowUnfree = true;
-            };
+        # homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
+        #   (import inputs.nixpkgs {
+        #     system = "x86_64-linux"; 
+        #     config = {
+        #       allowUnfree = true;
+        #     };
 
-            overlays = with inputs; [
-              nur.overlay
-              nix-vscode-extensions.overlays.default
-              inputs.nixgl.overlay
-            ];
-          }) ./systems/non-nixos-pc.nix;
+        #     overlays = with inputs; [
+        #       nur.overlay
+        #       nix-vscode-extensions.overlays.default
+        #       inputs.nixgl.overlay
+        #     ];
+        #   }) ./systems/non-nixos-pc.nix;
       };
 
       # for each system above, build out the workflow of developing, updating, and activating a system.
@@ -78,6 +78,23 @@
         # Define a home-manager system that will work across all target architectures for any linux system
         # legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
         #   pkgs ./systems/non-nixos-pc.nix;
+
+        # TODO(emily): is this the best way to handle overlays? There seems to be a schism
+        # between how NixOS based systems handle overlays with the module option, and how
+        # other types of systems apply them.
+        legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
+          (import inputs.nixpkgs {
+            system = "x86_64-linux"; 
+            config = {
+              allowUnfree = true;
+            };
+
+            overlays = with inputs; [
+              nur.overlay
+              nix-vscode-extensions.overlays.default
+              inputs.nixgl.overlay
+            ];
+          }) ./systems/non-nixos-pc.nix;
 
         # provides the ability to nix run to activate the resultant nixOS configuration
         # by default, it will choose the configuration who's host name matches, otherwise

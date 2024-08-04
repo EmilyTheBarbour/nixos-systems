@@ -27,7 +27,7 @@ in
         }
       
         # module.nix
-        extra-wordlists = [builtins.fromJSON ./word-list.json] 
+        extra-wordlists = [(builtins.fromJSON (builtins.readFile ./word-list.json))] 
       '';
     };
   };
