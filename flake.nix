@@ -56,9 +56,6 @@
         };
 
         # Define a home-manager system that will work across all target architectures for any linux system
-        # legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
-        #   pkgs ./systems/non-nixos-pc.nix;
-
         # TODO(emily): is this the best way to handle overlays? There seems to be a schism
         # between how NixOS based systems handle overlays with the module option, and how
         # other types of systems apply them.

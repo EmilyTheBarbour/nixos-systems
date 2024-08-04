@@ -17,6 +17,6 @@ in
 
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
-    trustedUsers = [ "root" "${flake.config.people.myself}" ];
+    settings.trusted-users = [ "root" "${flake.config.people.myself}" ];
   };
 }

@@ -14,6 +14,15 @@
     smart-pokemon = "fortune | pokemonsay";
   };
   
+  programs.kitty = {
+    enable = true;
+    theme = "Catppuccin-Frappe";
+    font = {
+      name = "MesloLGS Nerd Font";
+      size = 12;
+    };
+  };
+  
   # easy way to "jump" around to different directories
   programs.autojump.enable = true;
   

@@ -12,4 +12,6 @@ in
     userEmail = "${user_email}";
     userName = "${user_name}";
   };
+  
+  programs.lazygit.enable = true;
 }
