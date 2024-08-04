@@ -15,4 +15,6 @@ in
   
   # allow home-manager to manage fonts
   fonts.fontconfig.enable = true;
+  
+  programs.home-manager.enable = true;
 }

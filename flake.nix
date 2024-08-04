@@ -35,26 +35,6 @@
       flake = {
         nixosConfigurations.personal-pc = self.nixos-flake.lib.mkLinuxSystem ./systems/personal-pc.nix;
         nixosConfigurations.wsl-env = self.nixos-flake.lib.mkLinuxSystem ./systems/nixos-wsl.nix;
-        
-        
-        # TODO(emily): figure out how we can reasonably get access to flake-parts modules
-        # config.people.myself
-        # TODO(emily): is this the best way to handle overlays? There seems to be a schism
-        # between how NixOS based systems handle overlays with the module option, and how
-        # other types of systems apply them.
-        # homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
-        #   (import inputs.nixpkgs {
-        #     system = "x86_64-linux"; 
-        #     config = {
-        #       allowUnfree = true;
-        #     };
-
-        #     overlays = with inputs; [
-        #       nur.overlay
-        #       nix-vscode-extensions.overlays.default
-        #       inputs.nixgl.overlay
-        #     ];
-        #   }) ./systems/non-nixos-pc.nix;
       };
 
       # for each system above, build out the workflow of developing, updating, and activating a system.
@@ -84,7 +64,7 @@
         # other types of systems apply them.
         legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
           (import inputs.nixpkgs {
-            system = "x86_64-linux"; 
+            inherit system;
             config = {
               allowUnfree = true;
             };
