@@ -14,6 +14,8 @@
         dash-to-dock.extensionUuid
         appindicator.extensionUuid
       ];
+      
+      favorite-apps = ["firefox.desktop" "terminator.desktop" "code.nix"];
     };
 
 

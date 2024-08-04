@@ -93,12 +93,12 @@
           ];
 
           # provide our packages overlay as an input to our development shell
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
-            ];
-          };
+          # _module.args.pkgs = import inputs.nixpkgs {
+          #   inherit system;
+          #   overlays = [
+          #     (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
+          #   ];
+          # };
         };
       };
     };

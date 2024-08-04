@@ -12,5 +12,12 @@
     kcachegrind
     jq
     ripgrep
+
+    manix
+    nix-melt
+    nix-diff
+    nix-output-monitor
+    nix-tree
+    nix-health
   ];
 }

@@ -14,6 +14,21 @@ in
   services.udev.packages = with pkgs; [
     gnome.gnome-settings-daemon
   ];
+  
+  environment.gnome.excludePackages = with pkgs.gnome; with pkgs; [
+    epiphany
+    simple-scan
+    totem
+    yelp
+    evince
+    geary
+    gnome-contacts
+    gnome-logs
+    gnome-maps
+    gnome-music
+    gnome-connections
+    gnome-console
+  ];
 
   # we'll be using the HomeManager module for configuration
   # so lets append to the home-manager modules for this system
