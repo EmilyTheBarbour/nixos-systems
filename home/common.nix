@@ -5,8 +5,6 @@
     fortune
     lolcat
     pokemonsay 
-
-    python3
   ];
   
   home.shellAliases = {
