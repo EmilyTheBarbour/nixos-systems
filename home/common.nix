@@ -21,6 +21,10 @@
       name = "MesloLGS Nerd Font";
       size = 12;
     };
+    
+    settings = {
+      background_opacity = "0.9";
+    };
   };
   
   # easy way to "jump" around to different directories

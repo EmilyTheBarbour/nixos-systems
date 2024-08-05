@@ -38,7 +38,7 @@
       };
 
       # for each system above, build out the workflow of developing, updating, and activating a system.
-      perSystem = { self', inputs', pkgs, system, config, ... }: {
+      perSystem = { self', inputs', pkgs, system, config, lib, ... }: {
         nixos-flake = {
           # defines the subset of our flake-inputs which are deemed "main" inputs
           # which we specifically don't need / want to track specific revisions
@@ -56,22 +56,8 @@
         };
 
         # Define a home-manager system that will work across all target architectures for any linux system
-        # TODO(emily): is this the best way to handle overlays? There seems to be a schism
-        # between how NixOS based systems handle overlays with the module option, and how
-        # other types of systems apply them.
         legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
-          (import inputs.nixpkgs {
-            inherit system;
-            config = {
-              allowUnfree = true;
-            };
-
-            overlays = with inputs; [
-              nur.overlay
-              nix-vscode-extensions.overlays.default
-              inputs.nixgl.overlay
-            ];
-          }) ./systems/non-nixos-pc.nix;
+          pkgs ./systems/non-nixos-pc.nix;
 
         # provides the ability to nix run to activate the resultant nixOS configuration
         # by default, it will choose the configuration who's host name matches, otherwise
@@ -89,13 +75,21 @@
             nixpkgs-fmt
           ];
 
-          # provide our packages overlay as an input to our development shell
-          # _module.args.pkgs = import inputs.nixpkgs {
-          #   inherit system;
-          #   overlays = [
-          #     (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
-          #   ];
-          # };
+        };
+
+        # define the overlay to be used for pkgs in our PerSystem function
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+
+          overlays = with inputs; [
+            (import packages/overlay.nix { inherit flake; inherit (pkgs) system; })
+            nur.overlay
+            nix-vscode-extensions.overlays.default
+            inputs.nixgl.overlay
+          ];
         };
       };
     };

@@ -13,6 +13,7 @@
     jq
     ripgrep
 
+    # cool nix tools
     manix
     nix-melt
     nix-diff
