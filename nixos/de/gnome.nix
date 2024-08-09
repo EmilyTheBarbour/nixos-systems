@@ -20,7 +20,6 @@ in
     simple-scan
     totem
     yelp
-    evince
     geary
     gnome-contacts
     gnome-logs
