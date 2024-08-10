@@ -4,6 +4,6 @@
     xkb.variant = "";
   };
   
-  services.libinput.enable = true;
-  services.libinput.mouse.accelProfile = "flat";
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.mouse.accelProfile = "flat";
 }

@@ -32,6 +32,9 @@
 
       "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      
+      "org/gnome/desktop/peripherals/mouse".acceleration-profile = "flat";
+      "org/gnome/desktop/peripherals/mouse".speed = 0.25;
     };
   };
 
