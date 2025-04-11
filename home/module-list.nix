@@ -3,4 +3,6 @@
 # wholely consumed using builtins.attrValues 
 {
   vscode = import ./vscode.nix;
+  firefox = import ./firefox.nix;
+  git = import ./git.nix;
 }
