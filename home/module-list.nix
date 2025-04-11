@@ -1,3 +1,3 @@
 {
-	vscode = import ./vscode.nix;
+  vscode = import ./vscode.nix;
 }
