@@ -1,96 +1,54 @@
 {
+  description = "Emily's Personal PC Configurations";
+
   inputs = {
-    # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:lnl7/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nur.url = "github:nix-community/NUR";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
-    # additional inputs which we will track at a less frequent cadence
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-flake.url = "github:srid/nixos-flake";
     nixgl.url = "github:nix-community/nixGL";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";  
   };
 
-  outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      # The systems where we have support for deploying environments into
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+  outputs = { nixpkgs, home-manager, nur, nix-vscode-extensions, nixgl, flake-parts, ... }@inputs:
+  let 
+	overlays = { 
+		default = import ./overlay.nix;
+		nur = inputs.nur.overlay;
+		nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
+		nixgl = inputs.nixgl.overlay;
+	};
+  in
+  flake-parts.lib.mkFlake { inherit inputs; } {
+	imports = [
+		inputs.home-manager.flakeModules.home-manager
+	];  
+	flake = {
+		# re-export the overlays used throughout our configurations
+		# so consumers of our modules can quickly import them
+		inherit overlays;
 
-      # flake-parts modules which expose extra options and config we can use throughout
-      # the rest of our flake. Similar to how NixOS handles modules (options + config)
-      imports = [
-        inputs.nixos-flake.flakeModule
-        ./users
-        ./home
-        ./nixos
-        ./nix-darwin
-      ];
+		# un-realized modules for HomeManager and NixOS respectively, which
+		# can later be composed into systems through Configurations.
+		# an attrset 
+		homeModules = import ./home/module-list.nix;
+		nixosModules = import ./nixos/module-list.nix;
 
-      # the list of configurations
-      flake = {
-        nixosConfigurations.personal-pc = self.nixos-flake.lib.mkLinuxSystem ./systems/personal-pc.nix;
-        nixosConfigurations.wsl-env = self.nixos-flake.lib.mkLinuxSystem ./systems/nixos-wsl.nix;
-      };
+		# Actual machines / deployments I use
+		homeConfigurations = {};
+		nixosConfigurations = {};
+	};
 
-      # for each system above, build out the workflow of developing, updating, and activating a system.
-      perSystem = { self', inputs', pkgs, system, config, lib, ... }: {
-        nixos-flake = {
-          # defines the subset of our flake-inputs which are deemed "main" inputs
-          # which we specifically don't need / want to track specific revisions
-          # these are updated through nix run .#update
-          # you can think of this as very similar to a sudo apt upgrade
-          primary-inputs = [
-            "nixpkgs"
-            "home-manager"
-            "nix-darwin"
-            "nixos-flake"
-            "nur"
-            "nixos-wsl"
-            "nix-vscode-extensions"
-          ];
-        };
-
-        # Define a home-manager system that will work across all target architectures for any linux system
-        legacyPackages.homeConfigurations."emily" = inputs.self.nixos-flake.lib.mkHomeConfiguration
-          pkgs ./systems/non-nixos-pc.nix;
-
-        # provides the ability to nix run to activate the resultant nixOS configuration
-        # by default, it will choose the configuration who's host name matches, otherwise
-        # you can explicitly specify the hostname to use
-        packages.default = self'.packages.activate;
-
-        # define the format style to use for this repository
-        formatter = pkgs.nixpkgs-fmt;
-
-        # provides easy access to packages for development within the context of this repo
-        devShells.default = pkgs.mkShell {
-          inputsFrom = [ ];
-          packages = with pkgs; [
-            nil
-            nixpkgs-fmt
-          ];
-
-        };
-
-        # define the overlay to be used for pkgs in our PerSystem function
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          config = {
-            allowUnfree = true;
-          };
-
-          overlays = with inputs; [
-            (import packages/overlay.nix { inherit flake; inherit (pkgs) system; })
-            nur.overlay
-            nix-vscode-extensions.overlays.default
-            inputs.nixgl.overlay
-          ];
-        };
-      };
-    };
+	systems = [
+		"x86_64-linux"
+	];
+	perSystem = { config, pkgs, ... }: {
+		formatter = pkgs.alejandra;
+	};
+  };
 }
