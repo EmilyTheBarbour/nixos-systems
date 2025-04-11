@@ -19,9 +19,9 @@
   let 
 	overlays = { 
 		default = import ./overlay.nix;
-		nur = inputs.nur.overlay;
-		nix-vscode-extensions = inputs.nix-vscode-extensions.overlays.default;
-		nixgl = inputs.nixgl.overlay;
+		nur = nur.overlay;
+		nix-vscode-extensions = nix-vscode-extensions.overlays.default;
+		nixgl = nixgl.overlay;
 	};
   in
   flake-parts.lib.mkFlake { inherit inputs; } {
