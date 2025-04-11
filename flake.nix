@@ -46,11 +46,12 @@
         homeModules = import ./home/module-list.nix;
         nixosModules = import ./nixos/module-list.nix;
 
-        # Actual machines / deployments I use
+        # Actual machines / deployments I use for personal machines
         homeConfigurations = {};
         nixosConfigurations = {};
       };
 
+      # shorthand to add a formatter for each machine arch I use
       systems = [
         "x86_64-linux"
       ];

@@ -69,6 +69,9 @@ in {
 
         # nix
         jnoortheen.nix-ide
+        
+        # rust
+        rust-lang.rust-analyzer
 
         # python
         ms-python.python
