@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
@@ -12,11 +11,12 @@ with builtins; let
   # For each user supplied wordlist, grab the whitelist from it
   # then, flatten all of the resultant whitelists into a single whitelist
   word-whitelist = lists.flatten (forEach extra-wordlists (x: x.whitelist));
-in {
+in
+{
   options.sys-config.vscode = {
     extra-wordlists = mkOption {
       type = types.listOf types.attrs;
-      default = [];
+      default = [ ];
       example = ''
         # word-list.json
         {
@@ -52,123 +52,126 @@ in {
     programs.vscode = {
       enable = true;
 
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
+      profiles.default = {
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
 
-      extensions = with pkgs.vscode-marketplace; [
-        # Theme
-        catppuccin.catppuccin-vsc
-        catppuccin.catppuccin-vsc-icons
+        extensions = with pkgs.vscode-marketplace; [
+          # Theme
+          catppuccin.catppuccin-vsc
+          catppuccin.catppuccin-vsc-icons
 
-        # documentation
-        bbenoist.doxygen
-        cschlosser.doxdocgen
+          # documentation
+          bbenoist.doxygen
+          cschlosser.doxdocgen
 
-        # git
-        eamodio.gitlens
+          # git
+          eamodio.gitlens
 
-        # nix
-        jnoortheen.nix-ide
-        
-        # rust
-        rust-lang.rust-analyzer
+          # nix
+          jnoortheen.nix-ide
 
-        # python
-        ms-python.python
-        ms-python.vscode-pylance
-        ms-python.debugpy
-        njpwerner.autodocstring
-        kevinrose.vsc-python-indent
+          # rust
+          rust-lang.rust-analyzer
 
-        # C++
-        llvm-vs-code-extensions.vscode-clangd
-        vadimcn.vscode-lldb
-        twxs.cmake
+          # python
+          ms-python.python
+          ms-python.vscode-pylance
+          ms-python.debugpy
+          njpwerner.autodocstring
+          kevinrose.vsc-python-indent
 
-        ms-vscode.live-server
-        ms-vscode.hexeditor
+          # C++
+          llvm-vs-code-extensions.vscode-clangd
+          vadimcn.vscode-lldb
+          twxs.cmake
 
-        # JS/TS
-        ms-vscode.vscode-typescript-next
+          ms-vscode.live-server
+          ms-vscode.hexeditor
 
-        # Jinja
-        samuelcolvin.jinjahtml
+          # JS/TS
+          ms-vscode.vscode-typescript-next
 
-        # YAML
-        redhat.vscode-yaml
+          # Jinja
+          samuelcolvin.jinjahtml
 
-        # BASH
-        shakram02.bash-beautify
+          # YAML
+          redhat.vscode-yaml
 
-        # Protobuf
-        zxh404.vscode-proto3
+          # BASH
+          shakram02.bash-beautify
 
-        # helpers
-        gruntfuggly.todo-tree
-        wayou.vscode-todo-highlight
-        amodio.restore-editors
-        lacroixdavid1.vscode-format-context-menu
-        streetsidesoftware.code-spell-checker
-        yutengjing.open-in-external-app
-        mkhl.direnv
-        asvetliakov.vscode-neovim
-      ];
+          # Protobuf
+          zxh404.vscode-proto3
 
-      userSettings = {
-        "workbench.colorTheme" = "Catppuccin Frappé";
-        "workbench.iconTheme" = "catppuccin-frappe";
-        "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
-
-        "nix.enableLanguageServer" = true;
-        "nix.serverSettings" = {
-          "nil" = {"formatting" = {command = ["nixpkgs-fmt"];};};
-        };
-
-        "extensions.experimental.affinity" = {
-          "asvetliakov.vscode-neovim" = 1;
-        };
-
-        "doxdocgen.file.fileOrder" = [
-          "file"
-          "author"
-          "date"
-          "empty"
-          "brief"
+          # helpers
+          gruntfuggly.todo-tree
+          wayou.vscode-todo-highlight
+          amodio.restore-editors
+          lacroixdavid1.vscode-format-context-menu
+          streetsidesoftware.code-spell-checker
+          yutengjing.open-in-external-app
+          mkhl.direnv
+          asvetliakov.vscode-neovim
         ];
-        "doxdocgen.generic.useGitUserName" = true;
 
-        "C_Cpp.doxygen.generatedStyle" = "/**";
-        "C_Cpp.clang_format_stype" = "{ BasedOnStyle = Google; IndentWidth = 4; TabWidth = 4 }";
-        "C_Cpp.intelliSenseEngine" = "disabled";
+        userSettings = {
+          "workbench.colorTheme" = "Catppuccin Frappé";
+          "workbench.iconTheme" = "catppuccin-frappe";
+          "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
 
-        "files.exclude" = {
-          "**/.git" = true;
-          "**/.svn" = true;
-          "**/.hg" = true;
-          "**/CVS" = true;
-          "**/.DS_Store" = true;
-          "**/Thumbs.db" = true;
-          "/bin" = true;
-          "/boot" = true;
-          "/cdrom" = true;
-          "/dev" = true;
-          "/proc" = true;
-          "/etc" = true;
+          "nix.enableLanguageServer" = true;
+          "nix.serverSettings" = {
+            "nil" = { "formatting" = { command = [ "nixpkgs-fmt" ]; }; };
+          };
+
+          "extensions.experimental.affinity" = {
+            "asvetliakov.vscode-neovim" = 1;
+          };
+
+          "doxdocgen.file.fileOrder" = [
+            "file"
+            "author"
+            "date"
+            "empty"
+            "brief"
+          ];
+          "doxdocgen.generic.useGitUserName" = true;
+
+          "C_Cpp.doxygen.generatedStyle" = "/**";
+          "C_Cpp.clang_format_stype" = "{ BasedOnStyle = Google; IndentWidth = 4; TabWidth = 4 }";
+          "C_Cpp.intelliSenseEngine" = "disabled";
+
+          "files.exclude" = {
+            "**/.git" = true;
+            "**/.svn" = true;
+            "**/.hg" = true;
+            "**/CVS" = true;
+            "**/.DS_Store" = true;
+            "**/Thumbs.db" = true;
+            "/bin" = true;
+            "/boot" = true;
+            "/cdrom" = true;
+            "/dev" = true;
+            "/proc" = true;
+            "/etc" = true;
+          };
+
+          "terminal.integrated.enableMultiLinePasteWarning" = "never";
+
+          "editor.formatOnSave" = false;
+          "editor.formatOnSaveMode" = "modifications";
+          "editor.stickyScroll.enabled" = true;
+
+          "extensions.ignoreRecommendations" = true;
+
+          "search.followSymlinks" = false;
+
+          # apply all of the user provided word whitelists
+          "cSpell.userWords" = word-whitelist;
         };
-
-        "terminal.integrated.enableMultiLinePasteWarning" = "never";
-
-        "editor.formatOnSave" = false;
-        "editor.formatOnSaveMode" = "modifications";
-        "editor.stickyScroll.enabled" = true;
-
-        "extensions.ignoreRecommendations" = true;
-
-        "search.followSymlinks" = false;
-
-        # apply all of the user provided word whitelists
-        "cSpell.userWords" = word-whitelist;
       };
+
     };
   };
 }
