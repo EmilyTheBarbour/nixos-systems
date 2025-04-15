@@ -8,7 +8,7 @@
   common = import ./common.nix;
   terminator = import ./terminator.nix;
   zsh = import ./zsh.nix;
-  fonts = import ./fonts.nix
+  fonts = import ./fonts.nix;
 
   #video-editing = import ./video-editing.nix;
 }
