@@ -6,7 +6,9 @@
   firefox = import ./firefox.nix;
   git = import ./git.nix;
   common = import ./common.nix;
-  #terminator = import ./terminator.nix;
+  terminator = import ./terminator.nix;
+  zsh = import ./zsh.nix;
+  fonts = import ./fonts.nix
+
   #video-editing = import ./video-editing.nix;
-  #zsh = import ./zsh.nix;
 }
