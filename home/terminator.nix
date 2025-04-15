@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    nerd-fonts.meslo-lgs
+    nerd-fonts.meslo-lg
   ];
 
   programs.terminator = {
