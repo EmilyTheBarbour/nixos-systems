@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    nerdfonts
     meslo-lgs-nf
     zsh-powerlevel10k
   ];

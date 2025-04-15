@@ -52,6 +52,9 @@ in
     programs.vscode = {
       enable = true;
 
+      # prevent vscode from taking ownership of my extensiosn
+      mutableExtensionsDir = false;
+
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
