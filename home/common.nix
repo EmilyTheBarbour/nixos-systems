@@ -4,7 +4,7 @@
     cowsay
     fortune
     lolcat
-    pokemonsay 
+    pokemonsay
   ];
   
   home.shellAliases = {
