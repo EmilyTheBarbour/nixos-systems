@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     nerd-fonts.meslo-lg
     zsh-powerlevel10k
@@ -16,12 +14,12 @@
       bindkey "^[[1;5D" backward-word
 
     '';
-    
+
     autosuggestion.enable = true;
     enableCompletion = true;
-    
+
     plugins = [
-       {
+      {
         name = "zsh-nix-shell";
         file = "nix-shell.plugin.zsh";
         src = pkgs.fetchFromGitHub {
@@ -33,7 +31,7 @@
       }
     ];
   };
-  
+
   home.shellAliases = {
     nix-local = "nix --builders ''";
     nix-remote = "nix -j0";

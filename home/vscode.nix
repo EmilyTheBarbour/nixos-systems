@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 with lib;
 with builtins; let
@@ -11,12 +12,11 @@ with builtins; let
   # For each user supplied wordlist, grab the whitelist from it
   # then, flatten all of the resultant whitelists into a single whitelist
   word-whitelist = lists.flatten (forEach extra-wordlists (x: x.whitelist));
-in
-{
+in {
   options.sys-config.vscode = {
     extra-wordlists = mkOption {
       type = types.listOf types.attrs;
-      default = [ ];
+      default = [];
       example = ''
         # word-list.json
         {
@@ -125,7 +125,7 @@ in
 
           "nix.enableLanguageServer" = true;
           "nix.serverSettings" = {
-            "nil" = { "formatting" = { command = [ "nixpkgs-fmt" ]; }; };
+            "nil" = {"formatting" = {command = ["nixpkgs-fmt"];};};
           };
 
           "extensions.experimental.affinity" = {
@@ -174,7 +174,6 @@ in
           "cSpell.userWords" = word-whitelist;
         };
       };
-
     };
   };
 }

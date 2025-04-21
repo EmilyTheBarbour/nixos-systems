@@ -2,13 +2,15 @@
   programs.firefox = {
     enable = true;
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      bitwarden
-    ];
+    profiles.default = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        bitwarden
+      ];
 
-    settings = {
-      "extensions.autoDisableScopes" = 0;
-      "browser.toolbars.bookmarks.visibility" = "always";
+      settings = {
+        "extensions.autoDisableScopes" = 0;
+        "browser.toolbars.bookmarks.visibility" = "always";
+      };
     };
   };
 }
