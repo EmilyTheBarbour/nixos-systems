@@ -11,6 +11,10 @@
     initExtra = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${../config/p10k.zsh}
+
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+
     '';
     
     autosuggestion.enable = true;
