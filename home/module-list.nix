@@ -10,7 +10,7 @@
   zsh = import ./zsh.nix;
   fonts = import ./fonts.nix;
 
-  #video-editing = import ./video-editing.nix;
+  video-editing = import ./video-editing.nix;
 
   obsidian = import ./obsidian.nix;
 }
