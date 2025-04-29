@@ -3,9 +3,12 @@
     enable = true;
 
     profiles.default = {
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        bitwarden
-      ];
+      extensions = {
+        force = true;
+        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          bitwarden
+        ];
+      };
 
       settings = {
         "extensions.autoDisableScopes" = 0;
