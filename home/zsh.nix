@@ -36,5 +36,6 @@
     nix-local = "nix --builders ''";
     nix-remote = "nix -j0";
     nix-remote-auth = "tsh ls type=nixos-remote-builder";
+    nix-reinit-remote = "nix run --builders '' git+ssh://git@ghe.anduril.dev/devinfra/remote-builder-setup";
   };
 }
