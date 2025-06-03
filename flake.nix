@@ -2,16 +2,26 @@
   description = "Emily's Personal PC Configurations";
 
   inputs = {
+    # Unstable is honestly pretty stable, plus you get nearly the latest and
+    # greatest of linux 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # the flake-parts home-manager module is broken on master, so i've fixed on
+    # my own fork that I merge with upstream every update. 
+    # TODO(emily): submit a PR to get us back onto their origin
     home-manager.url = "github:EmilyTheBarbour/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Additional community provided derivations that operate at a more "move fast and break things"
+    # pace.
     nur.url = "github:nix-community/NUR";
+    
+    # Nix + nightly CI Infra which automatically create derivations of every VSCode extension on the
+    # MS Marketplace automatically. Occasionally breaks though, just give it until the next nightly
+    # to fix
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    nixgl.url = "github:nix-community/nixGL";
-
+    # I prefer the flake-parts flake definition schema
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
@@ -20,7 +30,6 @@
     home-manager,
     nur,
     nix-vscode-extensions,
-    nixgl,
     flake-parts,
     ...
   } @ inputs: let
@@ -28,12 +37,11 @@
       default = import ./overlay.nix;
       nur = nur.overlays.default;
       nix-vscode-extensions = nix-vscode-extensions.overlays.default;
-      nixgl = nixgl.overlay;
     };
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        inputs.home-manager.flakeModules.home-manager
+        home-manager.flakeModules.home-manager
       ];
       flake = {
         # re-export the overlays used throughout our configurations
