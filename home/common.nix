@@ -67,7 +67,7 @@
   programs.neovim.enable = true;
 
   # tries to correct your last command
-  programs.thefuck.enable = true;
+  programs.pay-resepects.enable = true;
 
   # CLI to download yt videos
   programs.yt-dlp.enable = true;
