@@ -26,6 +26,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nur,
@@ -66,8 +67,17 @@
       perSystem = {
         config,
         pkgs,
+        system,
+        lib,
         ...
       }: {
+        # This correctly consumes our overlays as defined above
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = (builtins.attrValues self.overlays);
+        };
+        legacyPackages = pkgs; # re-export them for easy REPL
+
         formatter = pkgs.alejandra;
       };
     };

@@ -86,7 +86,7 @@ in {
 
           # C++
           llvm-vs-code-extensions.vscode-clangd
-          vadimcn.vscode-lldb
+          # vadimcn.vscode-lldb
           twxs.cmake
 
           ms-vscode.live-server
