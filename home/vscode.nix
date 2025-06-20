@@ -84,6 +84,10 @@ in {
           njpwerner.autodocstring
           kevinrose.vsc-python-indent
 
+          # jupyter
+          ms-toolsai.jupyter
+          ms-toolsai.vscode-jupyter-powertoys
+
           # C++
           llvm-vs-code-extensions.vscode-clangd
           # vadimcn.vscode-lldb
