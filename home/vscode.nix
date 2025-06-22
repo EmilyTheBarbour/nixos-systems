@@ -76,6 +76,7 @@ in {
 
           # rust
           rust-lang.rust-analyzer
+          vadimcn.vscode-lldb
 
           # python
           ms-python.python
