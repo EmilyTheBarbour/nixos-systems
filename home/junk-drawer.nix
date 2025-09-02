@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+# collection of different packages and programs
+# 
+
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     # memes
     cowsay
@@ -14,19 +13,6 @@
   home.shellAliases = {
     lucky-cow = "fortune | cowsay | lolcat";
     smart-pokemon = "fortune | pokemonsay";
-  };
-
-  programs.kitty = {
-    enable = true;
-    theme = "Catppuccin-Frappe";
-    font = {
-      name = "MesloLGS Nerd Font";
-      size = 12;
-    };
-
-    settings = {
-      background_opacity = "0.9";
-    };
   };
 
   # easy way to "jump" around to different directories
