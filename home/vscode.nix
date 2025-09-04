@@ -71,6 +71,9 @@ in {
           # git
           eamodio.gitlens
 
+          # Matlab
+          mathworks.language-matlab
+
           # nix
           jnoortheen.nix-ide
 
