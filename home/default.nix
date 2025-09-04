@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   # All of our common modules across the home-manager config space
@@ -20,11 +21,37 @@
     ./de
   ];
 
-  options = {
-    # Same as the NixOS config side of the house, a unified definition for the target
-    # user of this machine, when configuring user related properties or permissions
-    main-user = pkgs.lib.types.mkUserOption "emilythebarbour" "Emily Barbour";
-  };
+  options =
+    let
+      inherit (lib) types mkOption;
+      userOption = types.submodule {
+        options = {
+          user-name = mkOption {
+            description = "linux user-name";
+            type = types.str;
+          };
+
+          display-name = mkOption {
+            description = "User's Full Name to display, for things like login";
+            type = types.str;
+          };
+        };
+      };
+
+      mkUserOption = user-name: display-name:
+        mkOption {
+          description = "The main User of this PC. Generally my Work PC's are single user, but feel free to add other users if you want.";
+          type = userOption;
+          default = {
+            inherit user-name display-name;
+          };
+        };
+
+
+    in
+    {
+      main-user = mkUserOption "emilythebarbour" "Emily Barbour";
+    };
 
   config = {
     # Required Home manager config to integrate with this machine

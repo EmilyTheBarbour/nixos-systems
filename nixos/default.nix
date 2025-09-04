@@ -1,6 +1,7 @@
 { config
 , inputs
 , pkgs
+, lib
 , ...
 }: {
   # We realize home-manger via the nixOS module for a unified config here,
@@ -15,9 +16,37 @@
     ./de
   ];
 
-  options = {
-    main-user = pkgs.lib.types.mkUserOption "emilythebarbour" "Emily Barbour";
-  };
+  options =
+    let
+      inherit (lib) types mkOption;
+      userOption = types.submodule {
+        options = {
+          user-name = mkOption {
+            description = "linux user-name";
+            type = types.str;
+          };
+
+          display-name = mkOption {
+            description = "User's Full Name to display, for things like login";
+            type = types.str;
+          };
+        };
+      };
+
+      mkUserOption = user-name: display-name:
+        mkOption {
+          description = "The main User of this PC. Generally my Work PC's are single user, but feel free to add other users if you want.";
+          type = userOption;
+          default = {
+            inherit user-name display-name;
+          };
+        };
+
+
+    in
+    {
+      main-user = mkUserOption "emilythebarbour" "Emily Barbour";
+    };
 
   config = {
 
