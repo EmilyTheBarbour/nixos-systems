@@ -8,6 +8,8 @@
     then
       lib.trace "enabling gaming modules in home-manager" [
         ./lutris.nix
+        ./osu.nix
+        ./discord.nix
       ]
     else [];
 }

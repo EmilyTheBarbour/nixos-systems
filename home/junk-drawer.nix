@@ -8,6 +8,9 @@
     lolcat
     pokemonsay
     gparted 
+
+    nix-index
+    nix-search-cli
   ];
 
   home.shellAliases = {
@@ -57,4 +60,9 @@
 
   # CLI to download yt videos
   programs.yt-dlp.enable = true;
+
+  programs.pay-respects = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
