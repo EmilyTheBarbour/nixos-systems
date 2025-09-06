@@ -41,11 +41,11 @@
     xkb.layout = "us";
     xkb.variant = "";
   };
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.mouse.accelProfile = "flat";
+  services.libinput.enable = true;
+  services.libinput.mouse.accelProfile = "flat";
 
   # Audio
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
