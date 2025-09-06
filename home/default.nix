@@ -14,6 +14,7 @@
     ./chromium.nix
     ./office.nix
     ./gimp.nix
+    ./flameshot.nix
 
     ./gaming
     ./de

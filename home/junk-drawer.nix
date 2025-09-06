@@ -8,6 +8,7 @@
     lolcat
     pokemonsay
     gparted
+    tldr
 
     nix-search-cli
   ];
@@ -74,4 +75,6 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  services.tldr-update.enable = true;
 }
