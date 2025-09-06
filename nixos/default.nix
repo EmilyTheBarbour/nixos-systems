@@ -12,6 +12,9 @@
 
     # # Well known desktop environments i've used
     ./de
+
+    # Nix configuration defaults I like
+    ./nix.nix
   ];
 
   config = {

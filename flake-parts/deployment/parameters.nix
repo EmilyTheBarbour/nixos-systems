@@ -40,6 +40,11 @@ let inherit (lib) types mkOption mkDefault; in types.submodule ({ config, ... }:
         ];
       };
     };
+
+    modules = mkOption {
+      # TODO(emily): figure out the semantics for taking in a list of modules
+      type = types.listOf types.anything;
+    };
   };
 
   config = {
@@ -50,5 +55,6 @@ let inherit (lib) types mkOption mkDefault; in types.submodule ({ config, ... }:
       user-name = mkDefault "emily";
       display-name = mkDefault "Emily Barbour";
     };
+    modules = mkDefault [];
   };
 })

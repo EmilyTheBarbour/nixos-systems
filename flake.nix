@@ -56,10 +56,32 @@
         # I utilize flake-parts modules to parameterize per-system config
         ./flake-parts
 
+        # Define my own deployments for now here
         {
           deployments = [
-            { 
-              machine.name = "personal-pc"; 
+            {
+              machine.name = "personal-pc";
+              # custom modules to extend beyond the core config provided by this framework
+              # Generally these are options that are hyper specific to an actual, physical realization
+              # of a device, such as HW Ids, etc.
+              modules = [
+                {
+                  fileSystems."/" =
+                    {
+                      device = "/dev/disk/by-uuid/dbc71064-c4f8-47be-9598-cb70a9372d7c";
+                      fsType = "ext4";
+                    };
+
+                  fileSystems."/boot" =
+                    {
+                      device = "/dev/disk/by-uuid/7EC9-C87C";
+                      fsType = "vfat";
+                      options = [ "fmask=0022" "dmask=0022" ];
+                    };
+                    
+                  swapDevices = [ ];
+                }
+              ];
             }
           ];
         }
