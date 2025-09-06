@@ -7,6 +7,7 @@
     fortune
     lolcat
     pokemonsay
+    gparted 
   ];
 
   home.shellAliases = {
