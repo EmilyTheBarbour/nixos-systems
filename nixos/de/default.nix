@@ -5,7 +5,8 @@
 }: let
   # custom bypasses the machinery and lets you define your own
   deMapping = {
-    gnome = ./gnome.nix;
+    gnome = lib.trace "enabling gnome support in nixOS" ./gnome.nix;
+    cosmic = lib.trace "enabling cosmic support in nixOS" ./cosmic.nix;
   };
 in {
   imports =

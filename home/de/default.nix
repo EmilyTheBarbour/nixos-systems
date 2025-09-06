@@ -5,7 +5,7 @@
 }: let
   # custom bypasses the machinery and lets you define your own
   deMapping = {
-    gnome = ./gnome;
+    gnome = lib.trace "enabling gnome support in home-manager" ./gnome;
   };
 in {
   imports =

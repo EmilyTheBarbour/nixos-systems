@@ -5,8 +5,8 @@
 }: let
   # Custom bypasses the machinery and lets you define your own
   machineMapping = {
-    dell-precision-5690 = ./dell-precision-5690;
-    generic-desktop-x86 = ./generic-desktop-x86;
+    dell-precision-5690 = lib.trace "selected dell-precision-5690 machine archetype" ./dell-precision-5690;
+    generic-desktop-x86 = lib.trace "selected generic-desktop-x86 machine archetype" ./generic-desktop-x86;
   };
 in {
   imports =

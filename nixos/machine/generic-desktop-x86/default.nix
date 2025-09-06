@@ -1,4 +1,10 @@
-{ config, pkgs, lib, modulesPath, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -6,22 +12,21 @@
   config = {
     nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 
-    boot =
-      {
-        loader = {
-          systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-        };
-
-        initrd = {
-          availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-          kernelModules = [ ];
-        };
-
-        # Kernel
-        kernelModules = [ "kvm-amd" ];
-        extraModulePackages = [ ];
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
       };
+
+      initrd = {
+        availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        kernelModules = [];
+      };
+
+      # Kernel
+      kernelModules = ["kvm-amd"];
+      extraModulePackages = [];
+    };
 
     # CPU
     hardware.cpu.amd.updateMicrocode = true;
@@ -29,7 +34,7 @@
 
     # GPU
     hardware.graphics.enable = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {
       modesetting.enable = true;

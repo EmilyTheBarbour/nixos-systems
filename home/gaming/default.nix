@@ -1,8 +1,13 @@
-{ parameters
-, ...
-}:
 {
-  imports = (if parameters.gaming.enable == true then [
-    ./lutris.nix
-  ] else [ ]);
+  parameters,
+  lib,
+  ...
+}: {
+  imports =
+    if parameters.gaming.enable == true
+    then
+      lib.trace "enabling gaming modules in home-manager" [
+        ./lutris.nix
+      ]
+    else [];
 }

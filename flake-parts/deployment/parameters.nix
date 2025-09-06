@@ -4,7 +4,7 @@ in
   types.submodule ({config, ...}: {
     options = {
       de.type = mkOption {
-        type = types.enum ["gnome" "custom"];
+        type = types.enum ["gnome" "cosmic" "custom"];
       };
 
       # TODO(emily): Instrument for multi-user machines

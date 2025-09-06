@@ -14,7 +14,7 @@
     ./chromium.nix
     ./office.nix
     ./gimp.nix
-    
+
     ./gaming
     ./de
   ];
