@@ -1,10 +1,15 @@
-{ parameters, lib, ... }:
-let
+{
+  parameters,
+  lib,
+  ...
+}: let
   # custom bypasses the machinery and lets you define your own
   deMapping = {
     gnome = ./gnome;
   };
-in
-{
-  imports = (if deMapping ? parameter.de.type then [ (lib.getAttr parameters.de.type deMapping) ] else [ ]);
+in {
+  imports =
+    if builtins.hasAttr parameters.de.type deMapping
+    then [(lib.getAttr parameters.de.type deMapping)]
+    else [];
 }

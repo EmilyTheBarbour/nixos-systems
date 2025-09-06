@@ -1,7 +1,6 @@
 # collection of different packages and programs
-# 
-
-{ pkgs, ... }: {
+#
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # memes
     cowsay

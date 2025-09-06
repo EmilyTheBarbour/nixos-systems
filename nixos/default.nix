@@ -1,6 +1,7 @@
-{ inputs
-, parameters
-, ...
+{
+  inputs,
+  parameters,
+  ...
 }: {
   # We realize home-manger via the nixOS module for a unified config here,
   # though this ideally short be exportable for a non NixOS work machine to use
@@ -34,7 +35,7 @@
     users.users.${parameters.users.main-user.user-name} = {
       isNormalUser = true;
       description = parameters.users.main-user.display-name;
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
     };
 
     home-manager = {
@@ -46,7 +47,7 @@
       users.${parameters.users.main-user.user-name} = {
         # the root of my home-manager config; this file tree can be used in isolation for a
         # mostly pure home-manager installation
-        imports = [ ../home ];
+        imports = [../home];
       };
 
       # inherit's all my nixpkgs config from the NixOS side of the house

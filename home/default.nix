@@ -1,6 +1,4 @@
-{ parameters
-, ...
-}: {
+{parameters, ...}: {
   # All of our common modules across the home-manager config space
   imports = [
     ./direnv.nix

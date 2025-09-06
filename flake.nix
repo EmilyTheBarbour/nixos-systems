@@ -27,24 +27,23 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , nur
-    , nix-vscode-extensions
-    , flake-parts
-    , nixos-hardware
-    , ...
-    } @ inputs:
-    let
-      overlays = {
-        default = import ./overlay.nix;
-        nur = nur.overlays.default;
-        nix-vscode-extensions = nix-vscode-extensions.overlays.default;
-      };
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nur,
+    nix-vscode-extensions,
+    flake-parts,
+    nixos-hardware,
+    ...
+  } @ inputs: let
+    overlays = {
+      default = import ./overlay.nix;
+      nur = nur.overlays.default;
+      nix-vscode-extensions = nix-vscode-extensions.overlays.default;
+    };
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       debug = true;
 
       # Simple ability to export home-manager modules separately from
@@ -66,20 +65,18 @@
               # of a device, such as HW Ids, etc.
               modules = [
                 {
-                  fileSystems."/" =
-                    {
-                      device = "/dev/disk/by-uuid/dbc71064-c4f8-47be-9598-cb70a9372d7c";
-                      fsType = "ext4";
-                    };
+                  fileSystems."/" = {
+                    device = "/dev/disk/by-uuid/dbc71064-c4f8-47be-9598-cb70a9372d7c";
+                    fsType = "ext4";
+                  };
 
-                  fileSystems."/boot" =
-                    {
-                      device = "/dev/disk/by-uuid/7EC9-C87C";
-                      fsType = "vfat";
-                      options = [ "fmask=0022" "dmask=0022" ];
-                    };
-                    
-                  swapDevices = [ ];
+                  fileSystems."/boot" = {
+                    device = "/dev/disk/by-uuid/7EC9-C87C";
+                    fsType = "vfat";
+                    options = ["fmask=0022" "dmask=0022"];
+                  };
+
+                  swapDevices = [];
                 }
               ];
             }
@@ -112,26 +109,26 @@
       systems = [
         "x86_64-linux"
       ];
-      perSystem =
-        { config
-        , pkgs
-        , system
-        , lib
-        , ...
-        }: {
-          # This correctly consumes our overlays as defined above for
-          # local usage of this flake
-          #
-          # Consumers of this flake should apply the same mechanism in
-          # addition to their overlays
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = builtins.attrValues self.overlays;
-          };
-
-          legacyPackages = pkgs; # re-export them for easy REPL
-
-          formatter = pkgs.alejandra;
+      perSystem = {
+        config,
+        pkgs,
+        system,
+        lib,
+        ...
+      }: {
+        # This correctly consumes our overlays as defined above for
+        # local usage of this flake
+        #
+        # Consumers of this flake should apply the same mechanism in
+        # addition to their overlays
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = builtins.attrValues self.overlays;
         };
+
+        legacyPackages = pkgs; # re-export them for easy REPL
+
+        formatter = pkgs.alejandra;
+      };
     };
 }

@@ -1,8 +1,4 @@
-{
-  parameters,
-  ...
-}:
-{
+{parameters, ...}: {
   nix = {
     # Run every other week, and remove paths older than 3 weeks
     gc = {

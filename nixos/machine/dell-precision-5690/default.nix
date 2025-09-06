@@ -1,4 +1,8 @@
-{ inputs, lib, ... }: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     # 5490 is just the 14" version of the 5690. Otherwise, hardware seems
     # to be identical

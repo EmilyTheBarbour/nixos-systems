@@ -1,9 +1,10 @@
-{ config
-, lib
-, modulesPath
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  modulesPath,
+  pkgs,
+  inputs,
+  ...
 }:
 # Don't tell the NixOS police, but I manually edited this file :)
 {
@@ -24,10 +25,10 @@
       '';
 
       initrd = {
-        availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+        availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
       };
 
-      kernelModules = [ "kvm-intel" ];
+      kernelModules = ["kvm-intel"];
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
@@ -67,7 +68,7 @@
       };
     };
 
-    services.xserver.videoDrivers = [ "intel" "nvidia" ];
+    services.xserver.videoDrivers = ["intel" "nvidia"];
 
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
@@ -94,5 +95,4 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
   };
-
 }

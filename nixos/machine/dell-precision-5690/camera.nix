@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   config = {
     #TODO(Emily): Currently this is semi-working via pipewire. However, Video through pipewire is still rather new,
@@ -11,10 +12,10 @@
 
     boot = {
       # Ensure the correct kernel module for the 5690 camera is loaded at boot time
-      kernelModules = [ "intel_ipu6" ];
+      kernelModules = ["intel_ipu6"];
 
       # Ensure we properly include the kernel module to interface with our 5690 camera
-      extraModulePackages = with config.boot.kernelPackages; [ ipu6-drivers ];
+      extraModulePackages = with config.boot.kernelPackages; [ipu6-drivers];
     };
 
     # TODO(emily): Make this a dev-shell for testing, required modules to use our
