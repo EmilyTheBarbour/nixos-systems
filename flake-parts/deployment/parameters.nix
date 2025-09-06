@@ -1,5 +1,5 @@
 lib: let
-  inherit (lib) types mkOption mkDefault;
+  inherit (lib) types mkOption mkDefault mkEnableOption;
 in
   types.submodule ({config, ...}: {
     options = {
@@ -51,6 +51,10 @@ in
         # TODO(emily): figure out the semantics for taking in a list of modules
         type = types.listOf types.anything;
       };
+
+      gaming = {
+        enable = mkEnableOption "whether or not to install gaming related services on the machine";
+      };
     };
 
     # This is the easiest way to make composable default configuration
@@ -67,5 +71,7 @@ in
       };
 
       modules = mkDefault [];
+
+      gaming.enable = mkDefault true;
     };
   })

@@ -1,8 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    nerd-fonts.meslo-lg
-  ];
-
+{
   programs.terminator = {
     enable = true;
     config = {

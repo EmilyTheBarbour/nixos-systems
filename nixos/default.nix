@@ -14,6 +14,10 @@
     # # Well known desktop environments i've used
     ./de
 
+    # scope of gaming related options. Generally will be disabled
+    # on productivity machines (i.e work)
+    ./gaming
+
     # Nix configuration defaults I like
     ./nix.nix
 
@@ -22,6 +26,9 @@
     ./locale.nix
     ./networking.nix
     ./wireshark.nix
+    ./input.nix
+    ./audio.nix
+    ./kernel.nix
   ];
 
   config = {

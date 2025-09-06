@@ -1,59 +1,51 @@
-{config, pkgs, ...}: {
-  nixpkgs.hostPlatform = "x86_64-linux";
-  
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+{ config, pkgs, lib, modulesPath, ... }: {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  # Boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  config = {
+    nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 
-  # Kernel
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+    boot =
+      {
+        loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
 
-  # CPU
-  hardware.cpu.amd.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
+        initrd = {
+          availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+          kernelModules = [ ];
+        };
 
-  # GPU
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+        # Kernel
+        kernelModules = [ "kvm-amd" ];
+        extraModulePackages = [ ];
+      };
 
-  hardware.nvidia = {
-    modesetting.enable = true;
+    # CPU
+    hardware.cpu.amd.updateMicrocode = true;
+    hardware.enableRedistributableFirmware = true;
 
-    # Disable power management related to the GPU
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    # GPU
+    hardware.graphics.enable = true;
+    services.xserver.videoDrivers = [ "nvidia" ];
 
-    # Do not use the Open Source Drivers
-    open = false;
+    hardware.nvidia = {
+      modesetting.enable = true;
 
-    # allow configuration using the Linux NvidiaSettings UI/UX
-    nvidiaSettings = true;
+      # Disable power management related to the GPU
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
 
-    # Select the latest production drivers
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
+      # Do not use the Open Source Drivers
+      open = false;
 
-  # Input
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-  services.libinput.enable = true;
-  services.libinput.mouse.accelProfile = "flat";
+      # allow configuration using the Linux NvidiaSettings UI/UX
+      nvidiaSettings = true;
 
-  # Audio
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+      # Select the latest production drivers
+      package = config.boot.kernelPackages.nvidiaPackages.production;
+    };
   };
 }

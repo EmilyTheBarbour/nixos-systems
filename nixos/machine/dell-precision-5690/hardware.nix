@@ -2,7 +2,6 @@
   config,
   lib,
   modulesPath,
-  pkgs,
   inputs,
   ...
 }:
@@ -17,9 +16,6 @@
     nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 
     boot = {
-      # I like to live on the edge, and it made my camera work slightly better
-      kernelPackages = pkgs.linuxPackages_latest;
-
       extraModprobeConfig = ''
         options bbswitch load_state=-1 unload_state=1 nvidia-drm
       '';
@@ -70,29 +66,11 @@
 
     services.xserver.videoDrivers = ["intel" "nvidia"];
 
-    # Enable sound with pipewire.
-    services.pulseaudio.enable = false;
-    security.rtkit.enable = true;
+    # TODO(Emily): Current Unstable has segfaults with our camera, even if we disable our ./camera.nix file...
+    # this really should be fixed...
     services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-
-      # TODO(Emily): Current Unstable has segfaults with our camera, even if we disable our ./camera.nix file...
-      # this really should be fixed...
       package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.pipewire;
       wireplumber.package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.wireplumber;
     };
-
-    # Configure keymap in X11
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
   };
 }
