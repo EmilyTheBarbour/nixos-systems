@@ -14,7 +14,6 @@
     ./chromium.nix
     ./office.nix
     ./gimp.nix
-    ./font.nix
     
     ./gaming
     ./de
