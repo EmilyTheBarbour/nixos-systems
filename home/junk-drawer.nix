@@ -7,7 +7,7 @@
     fortune
     lolcat
     pokemonsay
-    gparted 
+    gparted
 
     nix-index
     nix-search-cli
