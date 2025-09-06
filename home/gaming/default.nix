@@ -10,6 +10,7 @@
         ./lutris.nix
         ./osu.nix
         ./discord.nix
+        ./wallpaper-engine.nix
       ]
     else [];
 }
