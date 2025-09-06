@@ -77,4 +77,7 @@
   };
 
   services.tldr-update.enable = true;
+  
+  # TODO(emily): broken on unstable and not willing to fix it rn
+  # programs.sagemath.enable = true;   
 }

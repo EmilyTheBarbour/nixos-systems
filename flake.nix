@@ -24,7 +24,7 @@
     # I prefer the flake-parts flake definition schema
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = {
@@ -137,15 +137,6 @@
         legacyPackages = pkgs; # re-export them for easy REPL
 
         formatter = pkgs.alejandra;
-
-        devShells.default = let
-          unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
-        in (unstable.mkShell {
-          packages = with unstable; [
-            nixVersions.latest
-            nixos-rebuild
-          ];
-        });
       };
     };
 }
