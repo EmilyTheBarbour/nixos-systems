@@ -9,7 +9,6 @@
     pokemonsay
     gparted
 
-    nix-index
     nix-search-cli
   ];
 
@@ -61,7 +60,17 @@
   # CLI to download yt videos
   programs.yt-dlp.enable = true;
 
+  programs.dircolors = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.pay-respects = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.nix-index = {
     enable = true;
     enableZshIntegration = true;
   };
