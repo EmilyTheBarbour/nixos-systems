@@ -1,5 +1,7 @@
-{config, ...}: {
+{config, pkgs, ...}: {
   nixpkgs.hostPlatform = "x86_64-linux";
+  
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Boot
   boot.loader.systemd-boot.enable = true;
@@ -45,7 +47,7 @@
   services.libinput.mouse.accelProfile = "flat";
 
   # Audio
-  services.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

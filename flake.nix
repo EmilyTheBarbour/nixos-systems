@@ -27,23 +27,24 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nur,
-    nix-vscode-extensions,
-    flake-parts,
-    nixos-hardware,
-    ...
-  } @ inputs: let
-    overlays = {
-      default = import ./overlay.nix;
-      nur = nur.overlays.default;
-      nix-vscode-extensions = nix-vscode-extensions.overlays.default;
-    };
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , nur
+    , nix-vscode-extensions
+    , flake-parts
+    , nixos-hardware
+    , ...
+    } @ inputs:
+    let
+      overlays = {
+        default = import ./overlay.nix;
+        nur = nur.overlays.default;
+        nix-vscode-extensions = nix-vscode-extensions.overlays.default;
+      };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
 
       # Simple ability to export home-manager modules separately from
@@ -73,10 +74,10 @@
                   fileSystems."/boot" = {
                     device = "/dev/disk/by-uuid/7EC9-C87C";
                     fsType = "vfat";
-                    options = ["fmask=0022" "dmask=0022"];
+                    options = [ "fmask=0022" "dmask=0022" ];
                   };
 
-                  swapDevices = [];
+                  swapDevices = [ ];
                 }
               ];
             }
@@ -109,26 +110,37 @@
       systems = [
         "x86_64-linux"
       ];
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        lib,
-        ...
-      }: {
-        # This correctly consumes our overlays as defined above for
-        # local usage of this flake
-        #
-        # Consumers of this flake should apply the same mechanism in
-        # addition to their overlays
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = builtins.attrValues self.overlays;
+      perSystem =
+        { config
+        , pkgs
+        , system
+        , lib
+        , ...
+        }: {
+          # This correctly consumes our overlays as defined above for
+          # local usage of this flake
+          #
+          # Consumers of this flake should apply the same mechanism in
+          # addition to their overlays
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = builtins.attrValues self.overlays;
+          };
+
+          legacyPackages = pkgs; # re-export them for easy REPL
+
+          formatter = pkgs.alejandra;
+
+          devShells.default =
+            let
+              unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
+            in
+            (unstable.mkShell {
+              packages = with unstable; [
+                nixVersions.latest
+                nixos-rebuild
+              ];
+            });
         };
-
-        legacyPackages = pkgs; # re-export them for easy REPL
-
-        formatter = pkgs.alejandra;
-      };
     };
 }
