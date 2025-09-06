@@ -45,11 +45,24 @@
       };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+
       # Simple ability to export home-manager modules separately from
       # our nixosModules so consumers down the line that are nonNixOS
       # machines can still reap the benefits of our home-manager config
       imports = [
         home-manager.flakeModules.home-manager
+
+        # I utilize flake-parts modules to parameterize per-system config
+        ./flake-parts
+
+        {
+          deployments = [
+            { 
+              machine.name = "personal-pc"; 
+            }
+          ];
+        }
       ];
 
       flake = {
@@ -68,49 +81,8 @@
           default = import ./nixos;
         };
 
-        # Actual machines / deployments I use for personal machines
-        homeConfigurations = { };
-        nixosConfigurations = {
-          # Example usage of this repository to generate a system closure
-          example = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-
-            # This is a bit of a smell, but for now we're only enforcing
-            # the user provide inputs.home-manager.
-            #
-            # In the future, there may need to be additional machinery
-            # surrounding this
-            specialArgs = {
-              inputs = inputs;
-            };
-
-            modules = [
-              # directly pull our resultant core module, users would pull this
-              # off output
-              self.nixosModules.default
-
-              # Minimum viable config, in addition to the config.nix generated on install
-              # to use this repository
-              ({ config, lib, ... }: {
-                main-user = lib.mkForce {
-                  user-name = "ebarbour";
-                  display-name = "Emily Barbour";
-                };
-
-                machine = {
-                  type = lib.mkForce "dell-precision-5690";
-                  state-version = "24.11";
-                };
-
-                de.type = "gnome";
-              })
-
-              # Apply our overlays. At a minimum, they need to be the self.overlays,
-              # but practically users should compose our overlays with theirs prior
-              # to application
-              { nixpkgs.overlays = builtins.attrValues overlays; }
-            ];
-          };
+        flakeModules = {
+          default = import ./flake-parts;
         };
       };
 

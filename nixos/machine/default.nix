@@ -1,39 +1,21 @@
-{ lib, config, ... }: {
-  imports = [
-    ./dell-precision-5690
-  ];
+{ lib, parameters, ... }:
+let
+  # Custom bypasses the machinery and lets you define your own
+  machineMapping = {
+    dell-precision-5690 = ./dell-precision-5690;
+    generic-desktop-x86 = ./generic-desktop-x86;
+  };
 
-  options =
-    let
-      machineType =
-        lib.types.enum [
-          "dell-precision-5690"
+in
+{
+  imports = (if machineMapping ? parameter.machine.type then [ (lib.getAttr parameters.machine.type machineMapping) ] else [ ]);
 
-          # user consents to having a special machine that hasn't been integrated
-          # with yet, and that they will maintain that specifically for themselves
-          "custom"
-        ];
-    in
-    {
-      machine = {
-        type = lib.mkOption {
-          description = "target machine platform";
-          type = machineType;
-        };
-
-        state-version = lib.mkOption {
-          description = "abstraction layer to unify state version for NixOS systems running home-manager";
-          type = lib.types.str;
-        };
-      };
-    };
-
+  # also set our original state-version across both nix and home-manager
   config = {
-    system.stateVersion = config.machine.state-version;
-
-    home-manager.users.${config.main-user.user-name} = {
+    system.stateVersion = parameters.machine.state-version;
+    home-manager.users.${parameters.users.main-user.user-name} = {
       config = {
-        home.stateVersion = config.machine.state-version;
+        home.stateVersion = parameters.machine.state-version;
       };
     };
   };

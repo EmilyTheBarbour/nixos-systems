@@ -1,19 +1,10 @@
-{ pkgs, lib, ... }: {
-  imports = [ ./gnome ];
-
-  options =
-    let
-      deType = lib.types.enum [
-        "gnome"
-
-        "custom"
-      ];
-
-    in
-    {
-      de.type = lib.mkOption {
-        description = "config to inherit for personal DE configs. use \"custom\" to exempt and control this yourself";
-        type = deType;
-      };
-    };
+{ parameters, lib, ... }:
+let
+  # custom bypasses the machinery and lets you define your own
+  deMapping = {
+    gnome = ./gnome;
+  };
+in
+{
+  imports = (if deMapping ? parameter.de.type then [ (lib.getAttr parameters.de.type deMapping) ] else [ ]);
 }

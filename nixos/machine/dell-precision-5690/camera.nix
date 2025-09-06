@@ -1,9 +1,8 @@
 { config
 , pkgs
-, lib
 , ...
 }: {
-  config = (lib.mkIf (config.machine.type == "dell-precision-5690" && config.machine.dell-precision-5690.enable-camera-config) {
+  config = {
     #TODO(Emily): Currently this is semi-working via pipewire. However, Video through pipewire is still rather new,
     # and as such many services don't have correct integrations, i.e zoom.
     #
@@ -47,5 +46,5 @@
         ];
       };
     };
-  });
+  };
 }

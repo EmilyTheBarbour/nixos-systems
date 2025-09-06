@@ -11,7 +11,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  config = (lib.mkIf (config.machine.type == "dell-precision-5690") {
+  config = {
     # this is an x86_64 linux machine :)
     nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 
@@ -93,6 +93,6 @@
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
-  });
+  };
 
 }
