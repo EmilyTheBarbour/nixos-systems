@@ -47,14 +47,18 @@ let inherit (lib) types mkOption mkDefault; in types.submodule ({ config, ... }:
     };
   };
 
+  # This is the easiest way to make composable default configuration
   config = {
     de.type = mkDefault "gnome";
+
     machine.type = mkDefault "generic-desktop-x86";
     machine.system = mkDefault "x86_64-linux";
+
     users.main-user = {
       user-name = mkDefault "emily";
       display-name = mkDefault "Emily Barbour";
     };
+
     modules = mkDefault [];
   };
 })

@@ -38,7 +38,9 @@ let inherit (lib) types mkOption;parameters = (import ./parameters.nix lib); in 
                 # easy point to include overlays for now, probably want to paramterize
                 # this further down the line
                 { nixpkgs.overlays = builtins.attrValues self.overlays; }
-              ];
+              ] 
+              # Additonally include the user provided modules for their custom overrides
+              ++ parameters.modules;
 
             };
           })

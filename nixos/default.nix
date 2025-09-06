@@ -15,6 +15,12 @@
 
     # Nix configuration defaults I like
     ./nix.nix
+
+    # Additional, generic config
+    ./default-clis.nix
+    ./locale.nix
+    ./networking.nix
+    ./wireshark.nix
   ];
 
   config = {
