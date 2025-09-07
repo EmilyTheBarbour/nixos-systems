@@ -3,5 +3,11 @@
     enable = true;
     userEmail = lib.mkDefault "emilythebarbour@gmail.com";
     userName = lib.mkDefault "Emily Barbour";
+
+    extraConfig = {
+      push = {
+        autoSetupRemote = true;
+      };
+    };
   };
 }
