@@ -19,7 +19,10 @@
   };
 
   # easy way to "jump" around to different directories
-  programs.autojump.enable = true;
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # pretty version of cat
   programs.bat.enable = true;
@@ -28,10 +31,16 @@
   programs.bottom.enable = true;
 
   # open an interactive tree
-  programs.broot.enable = true;
+  programs.broot = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # modern LS replacement (alises ls commands)
-  programs.eza.enable = true;
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # neofetch replacement :)
   programs.fastfetch.enable = true;
@@ -41,7 +50,10 @@
   programs.fd.enable = true;
 
   # fuzzy find (integrates with shell history)
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # changelog generator using git commits
   programs.git-cliff.enable = true;
@@ -50,7 +62,10 @@
   programs.jq.enable = true;
 
   # community sourced cheatsheet of how to do things with commands
-  programs.navi.enable = true;
+  programs.navi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
 
   # tries to correct your last command
