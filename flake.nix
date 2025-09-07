@@ -15,16 +15,18 @@
     # Additional community provided derivations that operate at a more "move fast and break things"
     # pace.
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix + nightly CI Infra which automatically create derivations of every VSCode extension on the
     # MS Marketplace automatically. Occasionally breaks though, just give it until the next nightly
     # to fix
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # I prefer the flake-parts flake definition schema
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = {
