@@ -15,6 +15,7 @@
     ./office.nix
     ./gimp.nix
     ./flameshot.nix
+    ./neovim.nix
 
     ./gaming
     ./de

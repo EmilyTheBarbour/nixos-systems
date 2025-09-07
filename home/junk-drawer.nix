@@ -52,8 +52,6 @@
   # community sourced cheatsheet of how to do things with commands
   programs.navi.enable = true;
 
-  # obviously
-  programs.neovim.enable = true;
 
   # tries to correct your last command
   # programs.pay-resepects.enable = true;
