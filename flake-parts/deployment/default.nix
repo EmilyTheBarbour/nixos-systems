@@ -58,7 +58,7 @@ in
                       users.${parameters.users.main-user.user-name} = {
                         # the root of my home-manager config; this file tree can be used in isolation for a
                         # mostly pure home-manager installation
-                        imports = [ local_flake.homeModules ];
+                        imports = (builtins.attrValues local_flake.homeModules);
                       };
                     };
                   }
