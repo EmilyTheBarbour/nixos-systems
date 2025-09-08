@@ -59,6 +59,10 @@
       };
 
       flakeModules = let inherit (flake-parts-lib) importApply; in {
+        # This pairs our flakeModule with our overlays, homeModuels, and nixosModules defined in this flake
+        # note: this particularly enforces that everyone needs to consume our overlays as defined in this flake
+        # including Nur + nix-vscode-extensions, so in theory that means they don't have to apply them either?
+        # To be determined
         default = importApply ./flake-parts { inherit overlays homeModules nixosModules; };
       };
 
