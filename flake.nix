@@ -29,34 +29,37 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nur,
-    nix-vscode-extensions,
-    flake-parts,
-    nixos-hardware,
-    ...
-  } @ inputs: let
-    overlays = {
-      default = import ./overlay.nix;
-      nur = nur.overlays.default;
-      nix-vscode-extensions = nix-vscode-extensions.overlays.default;
-    };
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , nur
+    , nix-vscode-extensions
+    , flake-parts
+    , nixos-hardware
+    , ...
+    } @ inputs:
+    let
+      overlays = {
+        default = import ./overlay.nix;
+        nur = nur.overlays.default;
+        nix-vscode-extensions = nix-vscode-extensions.overlays.default;
+      };
+
+      flakeModules = {
+        default = import ./flake-parts;
+      };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
 
       # Simple ability to export home-manager modules separately from
       # our nixosModules so consumers down the line that are nonNixOS
       # machines can still reap the benefits of our home-manager config
-      imports = [
+      imports = (builtins.attrValues flakeModules) ++ [
         home-manager.flakeModules.home-manager
         flake-parts.flakeModules.flakeModules
 
-        # I utilize flake-parts modules to parameterize per-system config
-        ./flake-parts
 
         # Define my own deployments for now here
         {
@@ -70,7 +73,7 @@
       flake = {
         # re-export the overlays used throughout our configurations
         # so consumers of our modules can quickly import them
-        inherit overlays;
+        inherit overlays flakeModules;
 
         # un-realized modules for HomeManager and NixOS respectively, which
         # can later be composed into systems through Configurations.
@@ -83,35 +86,32 @@
           default = import ./nixos;
         };
 
-        flakeModules = {
-          default = import ./flake-parts;
-        };
       };
 
       # shorthand to add a formatter for each machine arch I use
       systems = [
         "x86_64-linux"
       ];
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        lib,
-        ...
-      }: {
-        # This correctly consumes our overlays as defined above for
-        # local usage of this flake
-        #
-        # Consumers of this flake should apply the same mechanism in
-        # addition to their overlays
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = builtins.attrValues self.overlays;
+      perSystem =
+        { config
+        , pkgs
+        , system
+        , lib
+        , ...
+        }: {
+          # This correctly consumes our overlays as defined above for
+          # local usage of this flake
+          #
+          # Consumers of this flake should apply the same mechanism in
+          # addition to their overlays
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = builtins.attrValues self.overlays;
+          };
+
+          legacyPackages = pkgs; # re-export them for easy REPL
+
+          formatter = pkgs.alejandra;
         };
-
-        legacyPackages = pkgs; # re-export them for easy REPL
-
-        formatter = pkgs.alejandra;
-      };
     };
 }
