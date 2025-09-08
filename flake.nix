@@ -53,6 +53,7 @@
       # machines can still reap the benefits of our home-manager config
       imports = [
         home-manager.flakeModules.home-manager
+        flake-parts.flakeModules.flakeModules
 
         # I utilize flake-parts modules to parameterize per-system config
         ./flake-parts
