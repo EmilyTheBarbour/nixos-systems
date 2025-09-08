@@ -4,7 +4,7 @@
 , ...
 }:
 let cfg = config.machine.dell-precision-5690; in {
-  config = (lib.mkIf (cfg.enable-camera-config) lib.trace "enabling experimental 5690 camera support" {
+  config = (lib.mkIf (cfg.enable-camera-config) (lib.trace "enabling experimental 5690 camera support" {
     #TODO(Emily): Currently this is semi-working via pipewire. However, Video through pipewire is still rather new,
     # and as such many services don't have correct integrations, i.e zoom.
     #
@@ -48,5 +48,5 @@ let cfg = config.machine.dell-precision-5690; in {
         ];
       };
     };
-  });
+  }));
 }
