@@ -39,18 +39,31 @@
     , nixos-hardware
     , ...
     } @ inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } ({ flake-parts-lib, ... }:
     let
       overlays = {
         default = import ./overlay.nix;
         nur = nur.overlays.default;
         nix-vscode-extensions = nix-vscode-extensions.overlays.default;
       };
-
-      flakeModules = {
-        default = import ./flake-parts;
+      
+      # un-realized modules for HomeManager and NixOS respectively, which
+      # can later be composed into systems through Configurations.
+      # an attrset
+      homeModules = {
+        default = import ./home;
       };
+
+      nixosModules = {
+        default = import ./nixos;
+      };
+
+      flakeModules = let inherit (flake-parts-lib) importApply; in {
+        default = importApply ./flake-parts { inherit overlays homeModules nixosModules; };
+      };
+
     in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    {
       debug = true;
 
       # Simple ability to export home-manager modules separately from
@@ -73,18 +86,8 @@
       flake = {
         # re-export the overlays used throughout our configurations
         # so consumers of our modules can quickly import them
-        inherit overlays flakeModules;
+        inherit overlays flakeModules nixosModules homeModules;
 
-        # un-realized modules for HomeManager and NixOS respectively, which
-        # can later be composed into systems through Configurations.
-        # an attrset
-        homeModules = {
-          default = import ./home;
-        };
-
-        nixosModules = {
-          default = import ./nixos;
-        };
 
       };
 
@@ -113,5 +116,5 @@
 
           formatter = pkgs.alejandra;
         };
-    };
+    });
 }
