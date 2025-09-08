@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, modulesPath
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -22,13 +23,13 @@
       ];
 
       initrd = {
-        availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ ];
+        availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        kernelModules = [];
       };
 
       # Kernel
-      kernelModules = [ "kvm-amd" ];
-      extraModulePackages = [ ];
+      kernelModules = ["kvm-amd"];
+      extraModulePackages = [];
     };
 
     # CPU
@@ -37,7 +38,7 @@
 
     # GPU
     hardware.graphics.enable = true;
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {
       modesetting.enable = true;

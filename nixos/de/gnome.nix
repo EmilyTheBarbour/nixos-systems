@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services = {
     xserver.enable = true;
 
@@ -7,10 +7,10 @@
     # home-manager configured ATM anyways so /shrug
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    udev.packages = with pkgs; [ gnome-settings-daemon ];
+    udev.packages = with pkgs; [gnome-settings-daemon];
   };
 
-  environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator ];
+  environment.systemPackages = with pkgs; [gnomeExtensions.appindicator];
 
   environment.gnome.excludePackages = with pkgs; [
     atomix # puzzle game

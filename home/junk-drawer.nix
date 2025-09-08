@@ -67,7 +67,6 @@
     enableZshIntegration = true;
   };
 
-
   # tries to correct your last command
   # programs.pay-resepects.enable = true;
 
@@ -90,7 +89,7 @@
   };
 
   services.tldr-update.enable = true;
-  
+
   # TODO(emily): broken on unstable and not willing to fix it rn
-  # programs.sagemath.enable = true;   
+  # programs.sagemath.enable = true;
 }

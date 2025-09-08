@@ -29,24 +29,23 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , nur
-    , nix-vscode-extensions
-    , flake-parts
-    , nixos-hardware
-    , ...
-    } @ inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } ({ flake-parts-lib, ... }:
-    let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nur,
+    nix-vscode-extensions,
+    flake-parts,
+    nixos-hardware,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} ({flake-parts-lib, ...}: let
       overlays = {
         default = import ./overlay.nix;
         nur = nur.overlays.default;
         nix-vscode-extensions = nix-vscode-extensions.overlays.default;
       };
-      
+
       # un-realized modules for HomeManager and NixOS respectively, which
       # can later be composed into systems through Configurations.
       # an attrset
@@ -58,67 +57,66 @@
         default = import ./nixos;
       };
 
-      flakeModules = let inherit (flake-parts-lib) importApply; in {
+      flakeModules = let
+        inherit (flake-parts-lib) importApply;
+      in {
         # This pairs our flakeModule with our overlays, homeModuels, and nixosModules defined in this flake
         # note: this particularly enforces that everyone needs to consume our overlays as defined in this flake
         # including Nur + nix-vscode-extensions, so in theory that means they don't have to apply them either?
         # To be determined
-        default = importApply ./flake-parts { inherit overlays homeModules nixosModules; };
+        default = importApply ./flake-parts {inherit overlays homeModules nixosModules;};
       };
-
-    in
-    {
+    in {
       debug = true;
 
       # Simple ability to export home-manager modules separately from
       # our nixosModules so consumers down the line that are nonNixOS
       # machines can still reap the benefits of our home-manager config
-      imports = (builtins.attrValues flakeModules) ++ [
-        home-manager.flakeModules.home-manager
-        flake-parts.flakeModules.flakeModules
+      imports =
+        (builtins.attrValues flakeModules)
+        ++ [
+          home-manager.flakeModules.home-manager
+          flake-parts.flakeModules.flakeModules
 
-
-        # Define my own deployments for now here
-        {
-          deployments = [
-            # Gaming / Personal Development Desktop (AMD CPU + Nvidia GPU)
-            (import ./deployments/personal-pc.nix)
-          ];
-        }
-      ];
+          # Define my own deployments for now here
+          {
+            deployments = [
+              # Gaming / Personal Development Desktop (AMD CPU + Nvidia GPU)
+              (import ./deployments/personal-pc.nix)
+            ];
+          }
+        ];
 
       flake = {
         # re-export the overlays used throughout our configurations
         # so consumers of our modules can quickly import them
         inherit overlays flakeModules nixosModules homeModules;
-
-
       };
 
       # shorthand to add a formatter for each machine arch I use
       systems = [
         "x86_64-linux"
       ];
-      perSystem =
-        { config
-        , pkgs
-        , system
-        , lib
-        , ...
-        }: {
-          # This correctly consumes our overlays as defined above for
-          # local usage of this flake
-          #
-          # Consumers of this flake should apply the same mechanism in
-          # addition to their overlays
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = builtins.attrValues self.overlays;
-          };
-
-          legacyPackages = pkgs; # re-export them for easy REPL
-
-          formatter = pkgs.alejandra;
+      perSystem = {
+        config,
+        pkgs,
+        system,
+        lib,
+        ...
+      }: {
+        # This correctly consumes our overlays as defined above for
+        # local usage of this flake
+        #
+        # Consumers of this flake should apply the same mechanism in
+        # addition to their overlays
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = builtins.attrValues self.overlays;
         };
+
+        legacyPackages = pkgs; # re-export them for easy REPL
+
+        formatter = pkgs.alejandra;
+      };
     });
 }

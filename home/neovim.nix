@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # obviously
   programs.neovim = {
     enable = true;
@@ -20,6 +20,5 @@
     viAlias = true;
     vimdiffAlias = true;
     defaultEditor = true;
-
   };
 }
