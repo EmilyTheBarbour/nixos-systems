@@ -9,7 +9,7 @@
     # the flake-parts home-manager module is broken on master, so i've fixed on
     # my own fork that I merge with upstream every update.
     # TODO(emily): submit a PR to get us back onto their origin
-    home-manager.url = "github:EmilyTheBarbour/home-manager";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Additional community provided derivations that operate at a more "move fast and break things"
