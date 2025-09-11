@@ -40,7 +40,7 @@
       nvidia = {
         nvidiaPersistenced = true;
         prime = {
-          sync.enable = true;
+          # sync.enable = true;
           nvidiaBusId = "PCI:1:0:0";
           intelBusId = "PCI:0:2:0";
         };
@@ -50,7 +50,7 @@
         powerManagement.finegrained = false;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.production;
       };
 
       enableAllFirmware = true;
@@ -68,9 +68,9 @@
 
     # TODO(Emily): Current Unstable has segfaults with our camera, even if we disable our ./camera.nix file...
     # this really should be fixed...
-    services.pipewire = {
-      package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.pipewire;
-      wireplumber.package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.wireplumber;
-    };
+    # services.pipewire = {
+    #   package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.pipewire;
+    #   wireplumber.package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.wireplumber;
+    # };
   };
 }
