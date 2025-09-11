@@ -4,7 +4,7 @@
   inputs = {
     # Unstable is honestly pretty stable, plus you get nearly the latest and
     # greatest of linux
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:EmilyTheBarbour/nixpkgs/eb/nvidia";
 
     # the flake-parts home-manager module is broken on master, so i've fixed on
     # my own fork that I merge with upstream every update.
@@ -48,7 +48,7 @@
 
       # un-realized modules for HomeManager and NixOS respectively, which
       # can later be composed into systems through Configurations.
-      # an attrset
+      # Note: these have an implicit dependency on `self.flakeModules.default`
       homeModules = {
         default = import ./home;
       };
@@ -60,7 +60,7 @@
       flakeModules = let
         inherit (flake-parts-lib) importApply;
       in {
-        # This pairs our flakeModule with our overlays, homeModuels, and nixosModules defined in this flake
+        # This pairs our flakeModule with our overlays, homeModules, and nixosModules defined in this flake
         # note: this particularly enforces that everyone needs to consume our overlays as defined in this flake
         # including Nur + nix-vscode-extensions, so in theory that means they don't have to apply them either?
         # To be determined
