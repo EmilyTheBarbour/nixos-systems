@@ -54,7 +54,7 @@ Collection of gaming related services and programs, which can be easily removed 
 The following is a minimal example to define a deployment *in this repository*:
 
 flake-parts config
-```
+```nix
 {
     deployments = [{
         machine.name = "<resultant nixosConfiguration attrName>";
@@ -75,7 +75,7 @@ flake-parts config
 If you wish to use this repository externally, here is the rough flake structure recommended for
 consumption:
 
-```
+```nix
 {
     inputs = {
         # pull it in
