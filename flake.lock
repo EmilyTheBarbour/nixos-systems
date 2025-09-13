@@ -64,11 +64,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757598712,
-        "narHash": "sha256-5PWVrdMp8u31Q247jqnJcwxKg3MJrs1TadTyTBRVBDY=",
+        "lastModified": 1757784838,
+        "narHash": "sha256-6aHo1++bAFdW1z+0tfuxM9EmxHvon90mHo8/+izXMcY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6d7c11a0adee0db21e3a8ef90ae07bb89bc20b8f",
+        "rev": "6e28513cf2ee9a985c339fcef24d44f43d23456b",
         "type": "github"
       },
       "original": {
@@ -85,11 +85,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757555750,
-        "narHash": "sha256-32Tgm1H4NKhFKfGtW2Iy8X7P9TjKJ4JGGd9b+mCycE0=",
+        "lastModified": 1757727921,
+        "narHash": "sha256-xP3XDh1r5gV0tbXstOoIzwX0VBLltBPs+Qq/UvBRU0E=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "5eaf56d3a39239b3690fd057bda981bb202a6e04",
+        "rev": "1e79494a0dfb1e81fed3e5bfc3b2371267efdfb6",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1757103352,
-        "narHash": "sha256-PtT7ix43ss8PONJ1VJw3f6t2yAoGH+q462Sn8lrmWmk=",
+        "lastModified": 1757775351,
+        "narHash": "sha256-xWsxmNHwt9jV/yFJqzsNeilpH4BR8MPe44Yt0eaGAIM=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "11b2a10c7be726321bb854403fdeec391e798bf0",
+        "rev": "f89c620d3d6e584d98280b48f0af7be4f8506ab5",
         "type": "github"
       },
       "original": {
@@ -115,16 +115,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1757553609,
-        "narHash": "sha256-80EXUnQqc0xc441CMkunP5HVQbpg+cZvLBfX+/ZDpeo=",
+        "lastModified": 1757788932,
+        "narHash": "sha256-7BUT7DnS1sqC/eYoyGQqjB4/FnoNDUzytCjagGxWLUw=",
         "owner": "EmilyTheBarbour",
         "repo": "nixpkgs",
-        "rev": "def8423d82a171deb63d0cc072a869d38a85e5e4",
+        "rev": "36f77a67705218c54ab45358218eeaf6438df236",
         "type": "github"
       },
       "original": {
         "owner": "EmilyTheBarbour",
-        "ref": "eb/nvidia",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -152,11 +151,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757603751,
-        "narHash": "sha256-VwRgcIBYFApi2C0RbbP6aG6TWRm0kvCcisMQxQoTxBw=",
+        "lastModified": 1757784038,
+        "narHash": "sha256-I1qi3dhfiW8kCEzWfWc1Z8FcrDGmk+LJSD5X/Su6XlI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "5f8b7da26191a1e82ad5a3044f140bf3bb938be1",
+        "rev": "e30d26b997f127ac3cdbf0e0b98481d1070a0a21",
         "type": "github"
       },
       "original": {

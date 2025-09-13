@@ -1,3 +1,3 @@
 {
-  programs.chromium.enable = false;
+  programs.chromium.enable = true;
 }
