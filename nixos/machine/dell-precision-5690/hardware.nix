@@ -46,8 +46,12 @@
         };
 
         modesetting.enable = true;
-        powerManagement.enable = true;
+
+        # Power management can cause issues with sleep. It's marked as experimental anyways
+        # so lets just keep it off for now
+        powerManagement.enable = false;
         powerManagement.finegrained = false;
+        
         open = false;
         nvidiaSettings = true;
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.production;

@@ -50,6 +50,9 @@ in {
 
     # Configure VSCode
     programs.vscode = {
+      # Use the OSS Version that has AI stuff stripped out
+      package = pkgs.vscodium;
+
       enable = true;
 
       # prevent vscode from taking ownership of my extensiosn
