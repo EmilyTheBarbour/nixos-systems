@@ -16,6 +16,8 @@
     ./gimp.nix
     ./flameshot.nix
     ./neovim.nix
+    ./devenv.nix
+    ./ladybird.nix
 
     ./gaming
     ./de
