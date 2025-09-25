@@ -18,6 +18,7 @@
     ./neovim.nix
     ./devenv.nix
     ./ladybird.nix
+    ./gdb.nix
 
     ./gaming
     ./de
