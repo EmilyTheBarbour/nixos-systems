@@ -6,7 +6,7 @@ let
     src = (pkgs.fetchgit {
       url = "https://gcc.gnu.org/git/gcc.git";
       sparseCheckout = ["libstdc++-v3/python"];
-      hash = "sha256-K1AwX+NTKh4Lm1V5l82pE2VyToMiRiJGk+/MLdhifd0=";
+      hash = "sha256-bLx2qD4pAAGteTcE38RmFG5w8M1e5GWt02OcNCjwuPM=";
     })
     + "/libstdc++-v3/python";
     
