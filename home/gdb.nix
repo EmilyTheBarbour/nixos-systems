@@ -27,6 +27,7 @@ in
 {
   home.packages = with pkgs; [
     gdb
+    generate_clangd
   ];
   
   home.file.".gdbinit".text = ''

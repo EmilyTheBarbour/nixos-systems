@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "generate_clangd"
+version = "0.0.0"
+description = ""
+authors = []
+packages = [{ include = "generate_clangd", from = "../" }]
+
+[tool.poetry.scripts]
+generate_clangd = "generate_clangd.generate_clangd:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
