@@ -27,6 +27,8 @@
 
     # I prefer the flake-parts flake definition schema
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs = {
@@ -37,6 +39,7 @@
     nix-vscode-extensions,
     flake-parts,
     nixos-hardware,
+    treefmt-nix,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({flake-parts-lib, ...}: let
@@ -77,6 +80,7 @@
         ++ [
           home-manager.flakeModules.home-manager
           flake-parts.flakeModules.flakeModules
+          treefmt-nix.flakeModule
 
           # Define my own deployments for now here
           {
@@ -104,6 +108,19 @@
         lib,
         ...
       }: {
+        treefmt.programs = let
+          linters = [
+            "taplo"
+            "alejandra"
+            "ruff-format"
+            "prettier"
+            "shfmt"
+          ];
+
+          enable_struct = builtins.foldl' (a: b: lib.attrsets.recursiveUpdate a b) {} (builtins.map (x: {"${x}".enable = true;}) linters);
+        in
+          enable_struct;
+
         # This correctly consumes our overlays as defined above for
         # local usage of this flake
         #
@@ -115,8 +132,6 @@
         };
 
         legacyPackages = pkgs; # re-export them for easy REPL
-
-        formatter = pkgs.alejandra;
       };
     });
 }

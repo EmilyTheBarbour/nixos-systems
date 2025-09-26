@@ -1,15 +1,19 @@
-{pkgs, lib, ...}:
-let 
+{
+  pkgs,
+  lib,
+  ...
+}: let
   pretty-printers = pkgs.stdenvNoCC.mkDerivation {
     name = "gcc-python-pretty-printers";
     version = "13.2";
-    src = (pkgs.fetchgit {
-      url = "https://gcc.gnu.org/git/gcc.git";
-      sparseCheckout = ["libstdc++-v3/python"];
-      hash = "sha256-bLx2qD4pAAGteTcE38RmFG5w8M1e5GWt02OcNCjwuPM=";
-    })
-    + "/libstdc++-v3/python";
-    
+    src =
+      (pkgs.fetchgit {
+        url = "https://gcc.gnu.org/git/gcc.git";
+        sparseCheckout = ["libstdc++-v3/python"];
+        hash = "sha256-bLx2qD4pAAGteTcE38RmFG5w8M1e5GWt02OcNCjwuPM=";
+      })
+      + "/libstdc++-v3/python";
+
     dontConfigure = true;
     dontBuild = true;
     dontPatch = true;
@@ -21,15 +25,14 @@ let
       runHook postInstall
     '';
   };
-  
+
   url = "127.0.0.1:1949";
-in
-{
+in {
   home.packages = with pkgs; [
     gdb
     generate_clangd
   ];
-  
+
   home.file.".gdbinit".text = ''
     set debuginfod enabled on
     python
@@ -38,16 +41,16 @@ in
     from libstdcxx.v6.printers import register_libstdcxx_printers
     register_libstdcxx_printers (None)
   '';
-  
+
   home.sessionVariables = {
     DEBUGINFOD_URLS = "https://${url}";
   };
-  
+
   systemd.user.services.nixseparatedebuginfod = {
     Unit = {
       Description = "Download and provide seperate debuginfo via the nix store";
     };
-    
+
     Install.WantedBy = ["default.target"];
     Service = {
       Environment = "PATH=${lib.makeBinPath [pkgs.nix]}";

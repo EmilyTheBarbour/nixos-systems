@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ ladybird ];
+  home.packages = with pkgs; [ladybird];
 }

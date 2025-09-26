@@ -51,7 +51,7 @@
         # so lets just keep it off for now
         powerManagement.enable = false;
         powerManagement.finegrained = false;
-        
+
         open = false;
         nvidiaSettings = true;
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.production;

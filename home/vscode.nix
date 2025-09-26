@@ -44,7 +44,9 @@ in {
       nil
     ];
 
-    home.shellAliases = let code-path = (lib.getExe config.programs.vscode.package); in {
+    home.shellAliases = let
+      code-path = lib.getExe config.programs.vscode.package;
+    in {
       "code" = code-path;
       "vscode" = code-path;
     };
