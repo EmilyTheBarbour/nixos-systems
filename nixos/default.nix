@@ -62,7 +62,7 @@
         # mostly pure home-manager installation
         imports = [
           ../home
-          
+
           inputs.catppuccin.homeModules.catppuccin
         ];
       };

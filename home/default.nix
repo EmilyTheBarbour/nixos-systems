@@ -1,4 +1,8 @@
-{parameters, inputs, ...}: {
+{
+  parameters,
+  inputs,
+  ...
+}: {
   # All of our common modules across the home-manager config space
   imports = [
     ./direnv.nix
@@ -22,7 +26,6 @@
 
     ./gaming
     ./de
-
   ];
 
   config = {
@@ -31,7 +34,6 @@
     home.homeDirectory = "/home/${parameters.users.main-user.user-name}";
     programs.home-manager.enable = true;
 
-    
     catppuccin = {
       enable = true;
       flavor = "frappe";
