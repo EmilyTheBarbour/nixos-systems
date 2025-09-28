@@ -17,6 +17,7 @@
     blur-my-shell
     dash-to-dock
     dash-to-panel
+    search-light
   ];
 
   programs.dconf.enable = true;
