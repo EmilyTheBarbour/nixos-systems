@@ -9,7 +9,7 @@
     ./vitals.nix
     ./appindicator.nix
     ./dash-to.nix
-    ./search-indicator.nix
+    ./search-light.nix
   ];
 
   config = {
