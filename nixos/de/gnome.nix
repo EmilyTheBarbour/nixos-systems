@@ -2,7 +2,7 @@
   services = {
     # TODO(Emily): Investigate switching to full wayland. as of 25.11, GNOME On nixOS has deprecated x11 support but
     # this currently applies a backwards compatibility via xWayland
-    xserver.enable = true;
+    # xserver.enable = true;
 
     # Even more basic using gnome, but honestly it has the best motion gestures for laptops in the NIX ecosystem IMO.
     # I should eventually move this into a more full-fledged module, but practically all my dconf settings are
@@ -37,9 +37,9 @@
     tali # poker game
   ];
 
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "adwaita-dark";
+  # };
 }

@@ -41,5 +41,7 @@
         picture-uri = wp-uri;
       };
     };
+
+    gtk.enable = true;
   };
 }
