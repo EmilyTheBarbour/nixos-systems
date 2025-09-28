@@ -28,6 +28,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = {

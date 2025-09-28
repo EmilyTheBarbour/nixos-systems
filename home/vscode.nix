@@ -70,10 +70,6 @@ in {
         enableExtensionUpdateCheck = false;
 
         extensions = with pkgs.vscode-marketplace; [
-          # Theme
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
-
           # documentation
           bbenoist.doxygen
           cschlosser.doxdocgen

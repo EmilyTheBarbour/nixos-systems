@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   services = {
+    # TODO(Emily): Investigate switching to full wayland. as of 25.11, GNOME On nixOS has deprecated x11 support but
+    # this currently applies a backwards compatibility via xWayland
     xserver.enable = true;
 
     # Even more basic using gnome, but honestly it has the best motion gestures for laptops in the NIX ecosystem IMO.
@@ -10,7 +12,17 @@
     udev.packages = with pkgs; [gnome-settings-daemon];
   };
 
-  environment.systemPackages = with pkgs; [gnomeExtensions.appindicator];
+  environment.systemPackages = with with pkgs; gnomeExtensions; [
+    appindicator
+    bluetooth-battery-meter
+    pano
+    burn-my-windows
+    compiz-windows-effect
+    vitals
+    tiling-shell
+    blur-my-shell
+  ];
+
 
   environment.gnome.excludePackages = with pkgs; [
     atomix # puzzle game
@@ -24,4 +36,10 @@
     iagno # go game
     tali # poker game
   ];
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
 }

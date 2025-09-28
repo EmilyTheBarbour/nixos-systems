@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "catppuccin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1758956381,
+        "narHash": "sha256-ROUw5E8CibG3jEy6oHjrkF6/P60eiaUJmc2s2ecC/LM=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "02dee881c3e644e2b561f407742f1fd927c40b83",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -115,15 +133,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1758746717,
-        "narHash": "sha256-LX8yWJnNe0KRPXJHNgJa5E+KQwA5uQzO3U/+TggCOlU=",
-        "owner": "EmilyTheBarbour",
+        "lastModified": 1758035966,
+        "narHash": "sha256-qqIJ3yxPiB0ZQTT9//nFGQYn8X/PBoJbofA7hRKZnmE=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d5ef108dc5bae4b635e3384cb465515f614aef60",
+        "rev": "8d4ddb19d03c65a36ad8d189d001dc32ffb0306b",
         "type": "github"
       },
       "original": {
-        "owner": "EmilyTheBarbour",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -144,6 +163,21 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1758746717,
+        "narHash": "sha256-LX8yWJnNe0KRPXJHNgJa5E+KQwA5uQzO3U/+TggCOlU=",
+        "owner": "EmilyTheBarbour",
+        "repo": "nixpkgs",
+        "rev": "d5ef108dc5bae4b635e3384cb465515f614aef60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EmilyTheBarbour",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1754340878,
         "narHash": "sha256-lgmUyVQL9tSnvvIvBp7x1euhkkCho7n3TMzgjdvgPoU=",
@@ -182,11 +216,12 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "treefmt-nix": "treefmt-nix"
       }
@@ -208,7 +243,7 @@
     },
     "treefmt-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1758728421,
