@@ -1,5 +1,5 @@
 {
-  settings.dconf = {
+  dconf.settings = {
     "org/gnome/shell/extensions/search-light" = {
       animation-speed = 100.0;
       blur-brightness = 0.59999999999999998;
