@@ -15,6 +15,8 @@
     vitals
     tiling-shell
     blur-my-shell
+    dash-to-dock
+    dash-to-panel
   ];
 
   programs.dconf.enable = true;
