@@ -10,7 +10,7 @@
       (pkgs.fetchgit {
         url = "https://gcc.gnu.org/git/gcc.git";
         sparseCheckout = ["libstdc++-v3/python"];
-        hash = "sha256-bLx2qD4pAAGteTcE38RmFG5w8M1e5GWt02OcNCjwuPM=";
+        hash = "sha256-3L+jQ2/IRs2gtQF4/n6JSbv+ImPjZ+Ru0IWfth6yh2s=";
       })
       + "/libstdc++-v3/python";
 
