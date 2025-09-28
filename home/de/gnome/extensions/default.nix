@@ -20,7 +20,7 @@
         enabled-extensions =
           [
             "search-light@icedman.github.com"
-            "dash-to-dock@micxgx.gmail.com"
+            # "dash-to-dock@micxgx.gmail.com"
             "Bluetooth-Battery-Meter@maniacx.github.com"
             "burn-my-windows@schneegans.github.com"
             "compiz-windows-effect@hermes83.github.com"
