@@ -21,4 +21,8 @@
     vimdiffAlias = true;
     defaultEditor = true;
   };
+
+  home.packages = with pkgs; [
+    vimgolf
+  ];
 }

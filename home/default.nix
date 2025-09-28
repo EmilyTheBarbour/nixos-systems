@@ -35,6 +35,7 @@
     catppuccin = {
       enable = true;
       flavor = "frappe";
+      firefox.force = true;
     };
   };
 }
