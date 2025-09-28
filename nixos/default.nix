@@ -35,7 +35,7 @@
   config = {
     catppuccin = {
       enable = true;
-      flavor = "frappe";
+      flavor = "macchiato";
     };
 
     # There is always at least 1 user in our systems for now. In the future this
