@@ -9,6 +9,7 @@
       preferred-monitor = 0;
       scale-height = 0.10000000000000001;
       scale-width = 0.10000000000000001;
+      border-radius = 4.0;
     };
   };
 }
