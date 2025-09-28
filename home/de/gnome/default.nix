@@ -15,6 +15,9 @@
       "org/gnome/desktop/interface/color-scheme" = {
         prefer-dark = true;
       };
+      "org/gnome/desktop/peripherals/mouse" = {
+        accel-profile = "flat";
+      };
     };
 
     qt = {
