@@ -1,5 +1,4 @@
 {pkgs, ...}:
-# TODO(emily): Move to personal-config
 {
   # These are a subset of options which are required at the NixOS level to set default
   # preferences for tools, such as text editors. Config here is as small as possible

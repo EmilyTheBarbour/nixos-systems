@@ -1,4 +1,10 @@
 {
-  #TODO(emily): hook up to keybind
-  services.flameshot.enable = true;
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        showDesktopNotification = false;
+      };
+    };
+  };
 }

@@ -69,12 +69,5 @@
     };
 
     services.xserver.videoDrivers = ["intel" "nvidia"];
-
-    # TODO(Emily): Current Unstable has segfaults with our camera, even if we disable our ./camera.nix file...
-    # this really should be fixed...
-    # services.pipewire = {
-    #   package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.pipewire;
-    #   wireplumber.package = inputs.nixpkgs-24-11.legacyPackages.x86_64-linux.wireplumber;
-    # };
   };
 }

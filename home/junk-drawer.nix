@@ -25,10 +25,27 @@
   };
 
   # pretty version of cat
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
+    ];
+  };
 
   # cute looking top replacement (btm)
-  programs.bottom.enable = true;
+  programs.bottom = {
+    enable = true;
+    settings = {
+      flags = {
+        current_usage = true;
+        tree = true;
+        battery = true;
+      };
+    };
+  };
 
   # open an interactive tree
   programs.broot = {
@@ -40,6 +57,9 @@
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
+    git = true;
+    icons = "always";
+    colors = "always";
   };
 
   # neofetch replacement :)
@@ -48,6 +68,9 @@
 
   # modern find replacement
   programs.fd.enable = true;
+  home.shellAliases = {
+    find = "fd";
+  };
 
   # fuzzy find (integrates with shell history)
   programs.fzf = {
@@ -55,20 +78,25 @@
     enableZshIntegration = true;
   };
 
+  programs.mcfly = {
+    enable = true;
+    enableZshIntegration = true;
+    fzf.enable = true;
+    keyScheme = "vim";
+  };
+
   # changelog generator using git commits
   programs.git-cliff.enable = true;
 
   # json query from the command line :)
   programs.jq.enable = true;
+  programs.jqp.enable = true;
 
   # community sourced cheatsheet of how to do things with commands
   programs.navi = {
     enable = true;
     enableZshIntegration = true;
   };
-
-  # tries to correct your last command
-  # programs.pay-resepects.enable = true;
 
   # CLI to download yt videos
   programs.yt-dlp.enable = true;
@@ -90,6 +118,5 @@
 
   services.tldr-update.enable = true;
 
-  # TODO(emily): broken on unstable and not willing to fix it rn
-  # programs.sagemath.enable = true;
+  programs.sagemath.enable = true;
 }

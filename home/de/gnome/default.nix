@@ -13,7 +13,7 @@
     dconf-location = lib.mkOption {
       type = lib.types.str;
       # TODO(emily); figure out how to reference host directory without impure
-      default = "~/config/home/de/gnome";
+      default = "${config.home.homeDirectory}/config/home/de/gnome";
     };
   };
 
