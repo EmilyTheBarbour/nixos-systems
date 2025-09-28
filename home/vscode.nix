@@ -136,10 +136,10 @@ in {
           "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
 
           "[dockercompose]" =  {
-            "editor.insertSpaces": true;
-            "editor.tabSize": 2;
-            "editor.autoIndent": "advanced";
-            "editor.defaultFormatter": "redhat.vscode-yaml"
+            "editor.insertSpaces" = true;
+            "editor.tabSize" = 2;
+            "editor.autoIndent" = "advanced";
+            "editor.defaultFormatter" = "redhat.vscode-yaml";
           };
 
           "nix.enableLanguageServer" = true;
