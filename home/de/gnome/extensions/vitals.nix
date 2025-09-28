@@ -7,7 +7,7 @@
       hide-zeros = false;
       icon-style = 1;
       menu-centered = false;
-      position-in-panel = 0;
+      position-in-panel = 2;
       show-battery = true;
       show-gpu = true;
       use-higher-precision = false;
