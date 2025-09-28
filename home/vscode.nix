@@ -133,9 +133,14 @@ in {
         ];
 
         userSettings = {
-          "workbench.colorTheme" = "Catppuccin Frappé";
-          "workbench.iconTheme" = "catppuccin-frappe";
           "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
+
+          "[dockercompose]" =  {
+            "editor.insertSpaces": true;
+            "editor.tabSize": 2;
+            "editor.autoIndent": "advanced";
+            "editor.defaultFormatter": "redhat.vscode-yaml"
+          };
 
           "nix.enableLanguageServer" = true;
           "nix.serverSettings" = {
