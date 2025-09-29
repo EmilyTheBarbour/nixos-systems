@@ -82,7 +82,6 @@
         ++ [
           home-manager.flakeModules.home-manager
           flake-parts.flakeModules.flakeModules
-          treefmt-nix.flakeModule
 
           # Define my own deployments for now here
           {
