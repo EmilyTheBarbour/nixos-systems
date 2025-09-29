@@ -14,6 +14,7 @@
   ];
 
   config = {
+    
     # this is an x86_64 linux machine :)
     nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 
@@ -25,6 +26,9 @@
       initrd = {
         availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
       };
+
+      kernelParams = [ "i915.modeset=0" ];
+      blacklistedKernelModules = [ "i915" ];
 
       kernelModules = ["kvm-intel"];
       loader = {
