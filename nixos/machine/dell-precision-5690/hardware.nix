@@ -2,15 +2,12 @@
   config,
   lib,
   modulesPath,
-  inputs,
   ...
 }:
 # Don't tell the NixOS police, but I manually edited this file :)
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.dell-xps-15-7590-nvidia
-    inputs.nixos-hardware.nixosModules.common-gpu-intel-disable
   ];
 
   config = {
@@ -27,6 +24,8 @@
         availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod"];
       };
 
+      # This basically forces ONLY The NVIDIA driver to work, which is fine and dandy but...
+      # you can only use an external display...
       kernelParams = [ "i915.modeset=0" ];
       blacklistedKernelModules = [ "i915" ];
 
