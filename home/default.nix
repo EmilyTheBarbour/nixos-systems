@@ -1,8 +1,4 @@
-{
-  parameters,
-  inputs,
-  ...
-}: {
+{parameters, ...}: {
   # All of our common modules across the home-manager config space
   imports = [
     ./direnv.nix
@@ -33,11 +29,5 @@
     home.username = parameters.users.main-user.user-name;
     home.homeDirectory = "/home/${parameters.users.main-user.user-name}";
     programs.home-manager.enable = true;
-
-    catppuccin = {
-      enable = true;
-      flavor = "macchiato";
-      firefox.force = true;
-    };
   };
 }

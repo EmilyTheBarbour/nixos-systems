@@ -12,9 +12,9 @@
           "vimMode" = true;
         };
 
-        appearance = {
-          "cssTheme" = "Catppuccin";
-        };
+        # appearance = {
+        #   "cssTheme" = "Catppuccin";
+        # };
       };
     };
   };

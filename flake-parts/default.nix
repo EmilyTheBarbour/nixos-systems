@@ -4,5 +4,8 @@ local_flake: {...}: {
   imports = [
     # This is the machinery required to generate N different deployments
     (import ./deployment local_flake)
+
+    # These modules are fine on their own
+    ./treefmt.nix
   ];
 }

@@ -2,4 +2,6 @@
 # unrealized modules
 final: prev: {
   generate_clangd = final.callPackage ./pkgs/generate_clangd {};
+
+  bottles = prev.bottles.override {removeWarningPopup = true;};
 }

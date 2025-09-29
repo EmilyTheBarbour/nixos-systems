@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./burn-my-windows.nix
     ./bluetooth-battery.nix
@@ -16,21 +16,20 @@
     dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = false;
-        disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
-        enabled-extensions =
-          [
-            "search-light@icedman.github.com"
-            # "dash-to-dock@micxgx.gmail.com"
-            "Bluetooth-Battery-Meter@maniacx.github.com"
-            "burn-my-windows@schneegans.github.com"
-            "compiz-windows-effect@hermes83.github.com"
-            "pano@elhan.io"
-            "tilingshell@ferrarodomenico.com"
-            "Vitals@CoreCoding.com"
-            "appindicatorsupport@rgcjonas.gmail.com"
-            "blur-my-shell@aunetx"
-            "dash-to-panel@jderose9.github.com"
-          ];
+        disabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com"];
+        enabled-extensions = [
+          "search-light@icedman.github.com"
+          # "dash-to-dock@micxgx.gmail.com"
+          "Bluetooth-Battery-Meter@maniacx.github.com"
+          "burn-my-windows@schneegans.github.com"
+          "compiz-windows-effect@hermes83.github.com"
+          "pano@elhan.io"
+          "tilingshell@ferrarodomenico.com"
+          "Vitals@CoreCoding.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
+          "blur-my-shell@aunetx"
+          "dash-to-panel@jderose9.github.com"
+        ];
       };
     };
   };

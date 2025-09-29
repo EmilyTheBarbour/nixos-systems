@@ -29,6 +29,10 @@ in
           type = types.str;
         };
 
+        flake-location = mkOption {
+          type = types.str;
+        };
+
         type = mkOption {
           type = types.enum [
             "dell-precision-5690"
@@ -64,6 +68,7 @@ in
       machine.type = mkDefault "generic-desktop-x86";
       machine.system = mkDefault "x86_64-linux";
       machine.state-version = "24.11";
+      machine.flake-location = "~/config";
 
       users.main-user = {
         user-name = mkDefault "emily";

@@ -22,13 +22,16 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
+    # base hardware configs to easily inherit from
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # I prefer the flake-parts flake definition schema
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    catppuccin.url = "github:catppuccin/nix";
+    # Additional Flakes I've started using
+    treefmt-nix.url = "github:numtide/treefmt-nix"; # global formatting
+    catppuccin.url = "github:catppuccin/nix"; # Theming
+    optnix.url = "github:water-sucks/optnix"; # Nix Options Searching TUI
   };
 
   outputs = {
@@ -38,7 +41,6 @@
     nur,
     nix-vscode-extensions,
     flake-parts,
-    nixos-hardware,
     treefmt-nix,
     ...
   } @ inputs:
@@ -108,19 +110,6 @@
         lib,
         ...
       }: {
-        treefmt.programs = let
-          linters = [
-            "taplo"
-            "alejandra"
-            "ruff-format"
-            "prettier"
-            "shfmt"
-          ];
-
-          enable_struct = builtins.foldl' (a: b: lib.attrsets.recursiveUpdate a b) {} (builtins.map (x: {"${x}".enable = true;}) linters);
-        in
-          enable_struct;
-
         # This correctly consumes our overlays as defined above for
         # local usage of this flake
         #

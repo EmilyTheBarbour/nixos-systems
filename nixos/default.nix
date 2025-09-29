@@ -7,7 +7,6 @@
   # though this ideally short be exportable for a non NixOS work machine to use
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.catppuccin.nixosModules.catppuccin
 
     # Well known machines I've integrated into
     ./machine
@@ -30,14 +29,12 @@
     ./input.nix
     ./audio.nix
     ./kernel.nix
+    ./bottles.nix
+    ./optnix.nix
+    ./catppuccin.nix
   ];
 
   config = {
-    catppuccin = {
-      enable = true;
-      flavor = "macchiato";
-    };
-
     # There is always at least 1 user in our systems for now. In the future this
     # may be restrictive (i.e server deployments), but we'll cross that bridge
     # when we get there
@@ -62,8 +59,6 @@
         # mostly pure home-manager installation
         imports = [
           ../home
-
-          inputs.catppuccin.homeModules.catppuccin
         ];
       };
 

@@ -135,7 +135,7 @@ in {
         userSettings = {
           "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
 
-          "[dockercompose]" =  {
+          "[dockercompose]" = {
             "editor.insertSpaces" = true;
             "editor.tabSize" = 2;
             "editor.autoIndent" = "advanced";
