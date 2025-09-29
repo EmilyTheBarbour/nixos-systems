@@ -2,6 +2,7 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }:
 # Don't tell the NixOS police, but I manually edited this file :)
