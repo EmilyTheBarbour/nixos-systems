@@ -9,8 +9,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-        inputs.hardware.nixosModules.dell-xps-15-7590-nvidia
-    inputs.hardware.nixosModules.common-gpu-intel-disable
+    inputs.nixos-hardware.nixosModules.dell-xps-15-7590-nvidia
+    inputs.nixos-hardware.nixosModules.common-gpu-intel-disable1
   ];
 
   config = {
