@@ -68,7 +68,7 @@ in
       machine.type = mkDefault "generic-desktop-x86";
       machine.system = mkDefault "x86_64-linux";
       machine.state-version = "24.11";
-      machine.flake-location = "~/config";
+      machine.flake-location = mkDefault "~/config";
 
       users.main-user = {
         user-name = mkDefault "emily";
