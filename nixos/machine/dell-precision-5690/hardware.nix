@@ -9,6 +9,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+        inputs.hardware.nixosModules.dell-xps-15-7590-nvidia
+    inputs.hardware.nixosModules.common-gpu-intel-disable
   ];
 
   config = {
@@ -69,6 +71,7 @@
 
     services.xserver.videoDrivers = ["intel" "nvidia"];
 
+    # https://discourse.nixos.org/t/issues-with-nvidia-prime-sync-on-wayland/57546/23
     services.udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
     '';
