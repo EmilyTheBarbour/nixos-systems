@@ -18,5 +18,6 @@
 
   options = {
     machine.dell-precision-5690.enable-camera-config = lib.mkEnableOption "enable experimental camera support";
+    machine.dell-precision-5690.disable-intel = lib.mkEnableOption "disable intel gpu, only allowing external displays";
   };
 }
