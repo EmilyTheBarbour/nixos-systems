@@ -91,5 +91,9 @@
     # services.udev.extraRules = ''
     #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
     # '';
+
+    environment.systems = with pkgs; [
+      nvidia-offload
+    ];
   };
 }
