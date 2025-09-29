@@ -40,7 +40,6 @@
       nvidia = {
         nvidiaPersistenced = true;
         prime = {
-          reverseSync.enable = true;
           nvidiaBusId = "PCI:1:0:0";
           intelBusId = "PCI:0:2:0";
         };
@@ -69,5 +68,9 @@
     };
 
     services.xserver.videoDrivers = ["intel" "nvidia"];
+
+    services.udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
+    '';
   };
 }
