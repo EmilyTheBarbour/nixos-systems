@@ -32,6 +32,7 @@
     ./bottles.nix
     ./optnix.nix
     ./catppuccin.nix
+    ./qmk.nix
   ];
 
   config = {
