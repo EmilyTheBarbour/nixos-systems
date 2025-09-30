@@ -11,6 +11,7 @@
         ./osu.nix
         ./discord.nix
         ./wallpaper-engine.nix
+        ./runelite.nix
       ]
     else [];
 }

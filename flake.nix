@@ -32,6 +32,7 @@
     treefmt-nix.url = "github:numtide/treefmt-nix"; # global formatting
     catppuccin.url = "github:catppuccin/nix"; # Theming
     optnix.url = "github:water-sucks/optnix"; # Nix Options Searching TUI
+    nixos-cli.url = "github:nix-community/nixos-cli";
   };
 
   outputs = {

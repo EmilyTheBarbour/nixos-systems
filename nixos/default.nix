@@ -7,6 +7,7 @@
   # though this ideally short be exportable for a non NixOS work machine to use
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-cli.nixosModules.nixos-cli
 
     # Well known machines I've integrated into
     ./machine
@@ -36,6 +37,13 @@
   ];
 
   config = {
+    services.nixos-cli = {
+      enable = true;
+      config = {
+        config_location = "${parameters.machine.flake-location}";
+      };
+    };
+
     # There is always at least 1 user in our systems for now. In the future this
     # may be restrictive (i.e server deployments), but we'll cross that bridge
     # when we get there
