@@ -46,12 +46,15 @@
         };
 
         nvidia = {
-          nvidiaPersistenced = true;
           prime = {
             nvidiaBusId = "PCI:1:0:0";
             intelBusId = "PCI:0:2:0";
           };
 
+          # this causes graphical glitches occasionally on sleep for my machine
+          nvidiaPersistenced = false;
+
+          # TODO(emily): might also have to turn this off for hybrid GPU setup
           modesetting.enable = true;
 
           # Power management can cause issues with sleep. It's marked as experimental anyways
