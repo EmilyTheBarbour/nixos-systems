@@ -98,7 +98,7 @@
     })
 
     (lib.mkIf (!config.machine.dell-precision-5690.disable-intel) {
-      services.xserver.enable = true;
+      # services.xserver.enable = true;
       services.xserver.videoDrivers = ["intel" "nvidia"];
 
       hardware.nvidia.prime = {
