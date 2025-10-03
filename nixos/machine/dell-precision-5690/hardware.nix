@@ -102,11 +102,12 @@
       services.xserver.videoDrivers = ["intel" "nvidia"];
 
       hardware.nvidia.prime = {
-        reverseSync.enable = true;
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+        # reverseSync.enable = true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
+        # sync.enable = true;
       };
 
       environment.systemPackages = with pkgs; [
