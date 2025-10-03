@@ -85,9 +85,9 @@
       # Order of eval via these udev rules unfortunately puts it after mutter loads,
       # meaning this doesn't take
       # # https://discourse.nixos.org/t/issues-with-nvidia-prime-sync-on-wayland/57546/23
-      services.udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
-      '';
+      # services.udev.extraRules = ''
+      #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
+      # '';
     }
 
     (lib.mkIf config.machine.dell-precision-5690.disable-intel {
