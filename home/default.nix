@@ -19,6 +19,8 @@
     ./devenv.nix
     ./ladybird.nix
     ./gdb.nix
+    ./ssh.nix
+    ./ghostty.nix
 
     ./gaming
     ./de

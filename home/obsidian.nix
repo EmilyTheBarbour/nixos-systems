@@ -11,10 +11,6 @@
         app = {
           "vimMode" = true;
         };
-
-        # appearance = {
-        #   "cssTheme" = "Catppuccin";
-        # };
       };
     };
   };

@@ -119,13 +119,4 @@
   services.tldr-update.enable = true;
 
   programs.sagemath.enable = true;
-
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    installBatSyntax = true;
-    installVimSyntax = true;
-    settings = {
-    };
-  };
 }
