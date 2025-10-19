@@ -34,4 +34,6 @@
     iagno # go game
     tali # poker game
   ];
+
+  services.gnome.gnome-browser-connector.enable = true;
 }

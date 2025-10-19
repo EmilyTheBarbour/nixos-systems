@@ -25,6 +25,11 @@
         enable = true;
         target = "Documents/robotics";
       };
+
+      services.input-remapper = {
+        enable = true;
+        enableUdevRules = true;
+      };
     })
   ];
 }
