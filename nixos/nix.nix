@@ -1,4 +1,4 @@
-{ parameters, ... }: {
+{parameters, ...}: {
   nix = {
     # Run every other week, and remove paths older than 3 weeks
     gc = {
@@ -14,11 +14,11 @@
     # unstable
     settings = {
       auto-optimise-store = true;
-      extra-experimental-features = [ "flakes" "nix-command" ];
+      extra-experimental-features = ["flakes" "nix-command"];
       keep-outputs = true;
       keep-derivations = true;
-      trusted-users = [ parameters.users.main-user.user-name ];
-      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      trusted-users = [parameters.users.main-user.user-name];
+      system-features = ["nixos-test" "benchmark" "big-parallel" "kvm"];
     };
   };
 

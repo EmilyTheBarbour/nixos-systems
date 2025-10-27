@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ bolt-launcher ];
+  home.packages = with pkgs; [bolt-launcher];
 }
