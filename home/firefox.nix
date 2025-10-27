@@ -1,7 +1,12 @@
 { pkgs, ... }: {
   programs.firefox = {
+    package = pkgs.firefox.override {
+      nativeMessagingHosts = [
+        pkgs.gnome-browser-connector
+      ];
+    };
+
     enable = true;
-    enableGnomeExtensions = true;
     policies =
       let
         lock-false = {

@@ -30,7 +30,7 @@
     extraPackages = with pkgs.bat-extras; [
       batdiff
       batman
-      batgrep
+      # batgrep
       batwatch
     ];
   };
@@ -118,5 +118,5 @@
 
   services.tldr-update.enable = true;
 
-  programs.sagemath.enable = true;
+  # programs.sagemath.enable = true;
 }

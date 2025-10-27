@@ -31,10 +31,10 @@
         platformTheme.name = "kvantum";
       };
     }
-    # TODO(emily): This is a byproduct of NVIDIA Prime, really need
-    # to figure that out
-    (lib.mkIf (parameters.machine.type == "dell-precision-5690") {
-      services.xserver.enable = true;
-    })
+    # # TODO(emily): This is a byproduct of NVIDIA Prime, really need
+    # # to figure that out
+    # (lib.mkIf (parameters.machine.type == "dell-precision-5690") {
+    #   services.xserver.enable = true;
+    # })
   ];
 }

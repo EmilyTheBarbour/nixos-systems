@@ -1,13 +1,11 @@
 {lib, ...}: {
   programs.git = {
     enable = true;
-    userEmail = lib.mkDefault "emilythebarbour@gmail.com";
-    userName = lib.mkDefault "Emily Barbour";
+    settings.user = {
+      email = lib.mkDefault "emilythebarbour@gmail.com";
+      name = lib.mkDefault "Emily Barbour";
 
-    extraConfig = {
-      push = {
-        autoSetupRemote = true;
-      };
+      push.autoSetupRemote = true;
     };
   };
 

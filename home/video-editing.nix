@@ -9,7 +9,7 @@
     plugins = with pkgs.obs-studio-plugins; [
       looking-glass-obs
       obs-advanced-masks
-      obs-color-monitor
+      # obs-color-monitor
       obs-dvd-screensaver
       obs-composite-blur
       obs-markdown
@@ -20,7 +20,7 @@
       obs-rgb-levels
       obs-scale-to-sound
       obs-source-record
-      obs-urlsource
+      # obs-urlsource
       obs-vkcapture
       obs-vnc
     ];

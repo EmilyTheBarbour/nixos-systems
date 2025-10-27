@@ -34,6 +34,7 @@
     ./optnix.nix
     ./catppuccin.nix
     ./qmk.nix
+    ./gdb.nix
   ];
 
   config = {
