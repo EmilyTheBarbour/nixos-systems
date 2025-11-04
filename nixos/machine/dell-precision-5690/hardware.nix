@@ -98,7 +98,7 @@
     })
 
     (lib.mkIf (!config.machine.dell-precision-5690.disable-intel) {
-      # services.xserver.enable = true;
+      services.xserver.enable = true;
       services.xserver.videoDrivers = ["intel" "nvidia"];
 
       hardware.nvidia.prime = {
@@ -107,11 +107,24 @@
         #   enable = true;
         #   enableOffloadCmd = true;
         # };
-        # sync.enable = true;
+        sync.enable = true;
       };
 
-      environment.systemPackages = with pkgs; [
-        nvidia-offload
+      hardware.nvidia.dynamicBoost.enable = true;
+
+      # environment.systemPackages = with pkgs; [
+      #   nvidia-offload
+      # ];
+
+      services.udev.packages = [
+        (pkgs.writeTextFile {
+          name = "mutter-nvidia-primary-gpu";
+          # Vendor 0x10de, Class 0x03 = Any NVIDIA GPU
+          text = ''
+            ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
+          ''; 
+          destination = "/etc/udev/rules.d/61-mutter-nvidia-primary-gpu.rules";
+        })
       ];
     })
   ];
