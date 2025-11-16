@@ -17,7 +17,7 @@
     ./flameshot.nix
     ./neovim.nix
     ./devenv.nix
-    ./ladybird.nix
+    # ./ladybird.nix
     ./gdb.nix
     ./ssh.nix
     ./ghostty.nix

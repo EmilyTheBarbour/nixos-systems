@@ -27,13 +27,13 @@
         red: 0.7176471,
         green: 0.7411765,
         blue: 0.972549,
-        alpha: 1.0,
+        alpha: 0.8,
     ),
     focus: (
         red: 0.7176471,
         green: 0.7411765,
         blue: 0.972549,
-        alpha: 1.0,
+        alpha: 0.8,
     ),
     divider: (
         red: 0.7176471,
@@ -45,7 +45,7 @@
         red: 0.7176471,
         green: 0.7411765,
         blue: 0.972549,
-        alpha: 1.0,
+        alpha: 0.8,
     ),
     disabled: (
         red: 0.0,
@@ -63,7 +63,7 @@
         red: 0.7092367,
         green: 0.7390116,
         blue: 0.8516874,
-        alpha: 1.0,
+        alpha: 0.8,
     ),
     disabled_border: (
         red: 0.7092367,
