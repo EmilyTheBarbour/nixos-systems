@@ -35,6 +35,7 @@
     ./catppuccin.nix
     ./qmk.nix
     ./gdb.nix
+    ./photography.nix
   ];
 
   config = {

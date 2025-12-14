@@ -5,6 +5,7 @@
     # Unstable is honestly pretty stable, plus you get nearly the latest and
     # greatest of linux
     nixpkgs.url = "github:nixOS/nixpkgs/";
+    nixpkgs-unstable.url = "github:nixOS/nixpkgs/nixos-unstable";
 
     # the flake-parts home-manager module is broken on master, so i've fixed on
     # my own fork that I merge with upstream every update.
@@ -47,7 +48,7 @@
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({flake-parts-lib, ...}: let
       overlays = {
-        default = import ./overlay.nix;
+        default = import ./overlay.nix inputs;
         nur = nur.overlays.default;
         nix-vscode-extensions = nix-vscode-extensions.overlays.default;
       };

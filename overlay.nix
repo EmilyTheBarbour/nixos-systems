@@ -1,6 +1,6 @@
 # any patches that need to be applied alongside our
 # unrealized modules
-final: prev: {
+inputs: final: prev: {
   generate_clangd = final.callPackage ./pkgs/generate_clangd {};
 
   bottles = prev.bottles.override {removeWarningPopup = true;};
@@ -12,6 +12,9 @@ final: prev: {
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
+
+  # qt6 = inputs.nixpkgs-unstable.legacyPackages.${final.system}.qt6;
+  # qt6Packages = inputs.nixpkgs-unstable.legacyPackages.${final.system}.qt6Packages;
 
   bolt-launcher = prev.bolt-launcher.override {enableRS3 = true;};
 
