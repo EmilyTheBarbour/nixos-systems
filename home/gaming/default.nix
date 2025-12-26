@@ -12,6 +12,7 @@
         ./discord.nix
         ./wallpaper-engine.nix
         ./runelite.nix
+        ./prismlauncher.nix
       ]
     else [];
 }
