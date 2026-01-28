@@ -130,6 +130,9 @@ in {
           yutengjing.open-in-external-app
           mkhl.direnv
           asvetliakov.vscode-neovim
+
+          # Latex
+          james-yu.latex-workshop
         ];
 
         userSettings = {
