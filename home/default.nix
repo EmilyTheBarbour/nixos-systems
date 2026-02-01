@@ -21,6 +21,7 @@
     ./gdb.nix
     ./ssh.nix
     ./ghostty.nix
+    ./audacity.nix
 
     ./gaming
     ./de
