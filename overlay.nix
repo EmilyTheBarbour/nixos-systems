@@ -13,19 +13,6 @@ inputs: final: prev: {
     exec "$@"
   '';
 
-  audacity-4 = prev.audacity.overrideAttrs {
-    version = "4.0-alpha-2";
-    src = final.fetchFromGitHub {
-      owner = "audacity";
-      repo = "audacity";
-      rev = "0d13c190a1697c7699bd9dbd10882eac7f15f477";
-      hash = "sha256-gTky+wORQ6n3EepOUA8Y2zc8AocqjGP42N42G6FXRS8=";
-    };
-  };
-
-  # qt6 = inputs.nixpkgs-unstable.legacyPackages.${final.system}.qt6;
-  # qt6Packages = inputs.nixpkgs-unstable.legacyPackages.${final.system}.qt6Packages;
-
   bolt-launcher = prev.bolt-launcher.override {enableRS3 = true;};
 
   gcc-python-pretty-printers = final.stdenvNoCC.mkDerivation {
