@@ -103,11 +103,11 @@
 
       hardware.nvidia.prime = {
         # reverseSync.enable = true;
-        # offload = {
-        #   enable = true;
-        #   enableOffloadCmd = true;
-        # };
-        sync.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        # sync.enable = true;
       };
 
       hardware.nvidia.dynamicBoost.enable = true;
