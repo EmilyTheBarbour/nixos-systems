@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.firefox.policies.Preferences = {
     "widget.gtk.libadwaita-colors.enabled" = false;
   };
@@ -13,15 +17,13 @@
     cosmic-ext-tweaks
   ];
 
-  home.file = 
-    let folders = 
-      let 
-        wallpaper = "${../../config/wallpaper.jpg}";
-      in
-      {
+  home.file = let
+    folders = let
+      wallpaper = "${../../config/wallpaper.jpg}";
+    in {
       # wallpapers stuffs
       "com.system76.CosmicBackground/v1/same-on-all" = pkgs.writeText "same-on-all" ''
-        true        
+        true
       '';
       "com.system76.CosmicBackground/v1/all" = pkgs.writeText "all" ''
         (
@@ -38,8 +40,8 @@
         [
           "${wallpaper}",
         ]
-        '';
-        
+      '';
+
       "com.system76.CosmicAppList" = ../../config/cosmic/com.system76.CosmicAppList;
       "com.system76.CosmicComp" = ../../config/cosmic/com.system76.CosmicComp;
       "com.system76.CosmicPanel" = ../../config/cosmic/com.system76.CosmicPanel;
@@ -53,10 +55,13 @@
       "com.system76.CosmicTk" = ../../config/cosmic/com.system76.CosmicTk;
     };
     inherit (lib.attrsets) nameValuePair;
-  in lib.mapAttrs' (name: path: nameValuePair (".config/cosmic/${name}") ({
-    enable = true;
-    source = path;
-    recursive = true;
-    force = true;
-  })) folders;
+  in
+    lib.mapAttrs' (name: path:
+      nameValuePair ".config/cosmic/${name}" {
+        enable = true;
+        source = path;
+        recursive = true;
+        force = true;
+      })
+    folders;
 }

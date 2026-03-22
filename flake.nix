@@ -67,9 +67,6 @@
       };
 
       nixosModules = {
-        # optionally provides the ability to consume niri modules
-        inherit (niri.nixosModules) niri;
-
         default = import ./nixos;
       };
 

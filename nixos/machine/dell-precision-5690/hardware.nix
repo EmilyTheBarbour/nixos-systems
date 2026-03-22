@@ -122,7 +122,7 @@
           # Vendor 0x10de, Class 0x03 = Any NVIDIA GPU
           text = ''
             ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TAG+="mutter-device-preferred-primary"
-          ''; 
+          '';
           destination = "/etc/udev/rules.d/61-mutter-nvidia-primary-gpu.rules";
         })
       ];

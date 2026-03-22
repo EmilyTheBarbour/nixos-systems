@@ -1,6 +1,6 @@
 {
   machine.name = "personal-pc";
-  de.type = "cosmic";
+  de.type = "niri";
   # custom modules to extend beyond the core config provided by this framework
   # Generally these are options that are hyper specific to an actual, physical realization
   # of a device, such as HW Ids, etc.

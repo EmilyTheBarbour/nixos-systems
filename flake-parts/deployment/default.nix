@@ -42,11 +42,6 @@ in {
                 # flake-parts eval time -> specialArgs, breaking infinite recursion
                 # issues, thus allowing us perform conditional imports
                 local_flake.nixosModules.default
-                
-                # Even if the user doesn't select niri as their DE; this will only, by default
-                # add the cachix entry to their existing config. This gives them the flexibility
-                # to switch to it later without long builds
-                local_flake.nixosModules.niri
 
                 # easy point to include overlays for now, probably want to paramterize
                 # this further down the line
@@ -66,7 +61,7 @@ in {
                     };
                   };
                 }
-              ] 
+              ]
               # Additonally include the user provided modules for their custom overrides
               ++ parameters.modules;
           };
