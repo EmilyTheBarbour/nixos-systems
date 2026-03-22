@@ -7,6 +7,7 @@
   deMapping = {
     gnome = lib.trace "enabling gnome support in home-manager" ./gnome;
     cosmic = lib.trace "enabling cosmic support in home-manager" ./cosmic.nix;
+    niri = lib.trace "enabling niri support in home-manager" ./niri.nix;
   };
 in {
   imports =

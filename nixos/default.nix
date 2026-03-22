@@ -39,9 +39,9 @@
   ];
 
   config = {
-    services.nixos-cli = {
+    programs.nixos-cli = {
       enable = true;
-      config = {
+      settings = {
         config_location = "${parameters.machine.flake-location}";
       };
     };

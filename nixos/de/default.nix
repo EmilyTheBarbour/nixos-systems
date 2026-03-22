@@ -7,6 +7,7 @@
   deMapping = {
     gnome = lib.trace "enabling gnome support in nixOS" ./gnome.nix;
     cosmic = lib.trace "enabling cosmic support in nixOS" ./cosmic.nix;
+    niri = lib.trace "enabling niri support in nixOS" ./niri.nix;
   };
 in {
   imports =
