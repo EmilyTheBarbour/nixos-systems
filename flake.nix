@@ -16,9 +16,7 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Tiling scrollable Wayland Compositor
     niri.url = "github:sodiboo/niri-flake";
-    niri.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix + nightly CI Infra which automatically create derivations of every VSCode extension on the
     # MS Marketplace automatically. Occasionally breaks though, just give it until the next nightly
@@ -52,8 +50,6 @@
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({flake-parts-lib, ...}: let
       overlays = {
-        inherit (niri.overlays) niri;
-
         default = import ./overlay.nix inputs;
         nur = nur.overlays.default;
         nix-vscode-extensions = nix-vscode-extensions.overlays.default;

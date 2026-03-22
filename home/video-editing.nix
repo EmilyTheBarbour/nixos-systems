@@ -23,6 +23,7 @@
       # obs-urlsource
       obs-vkcapture
       obs-vnc
+      wlrobs
     ];
   };
 }
