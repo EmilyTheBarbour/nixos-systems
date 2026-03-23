@@ -46,6 +46,9 @@ in {
                 # Theming Engine for NixOS
                 inputs.stylix.nixosModules.stylix
 
+                # Adds the "ability" to enable niri; but will always enable cachix
+                inputs.niri.nixosModules.niri
+
                 # easy point to include overlays for now, probably want to paramterize
                 # this further down the line
                 {
