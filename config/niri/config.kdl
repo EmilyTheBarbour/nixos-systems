@@ -223,6 +223,10 @@ window-rule {
     clip-to-geometry true
 }
 
+output "ViewSonic Corporation XG2431 WEE221100395" {
+    mode "1920x1080@239.761"
+}
+
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
