@@ -32,7 +32,7 @@
     ./kernel.nix
     ./bottles.nix
     ./optnix.nix
-    ./catppuccin.nix
+    ./stylix.nix
     ./qmk.nix
     ./gdb.nix
     ./photography.nix

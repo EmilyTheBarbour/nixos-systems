@@ -53,5 +53,8 @@
     };
   };
 
-  stylix.targets.firefox.profileNames = ["default"];
+  stylix.targets.firefox = {
+    profileNames = ["default"];
+    colorTheme.enable = true;
+  };
 }

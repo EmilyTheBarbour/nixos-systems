@@ -3,7 +3,6 @@
   imports = [
     ./direnv.nix
     ./firefox.nix
-    ./fonts.nix
     ./git.nix
     ./obsidian.nix
     ./terminator.nix
