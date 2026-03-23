@@ -52,9 +52,25 @@ layout {
     center-focused-column "on-overflow"
     always-center-single-column
 
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+    }
+
+    default-column-width { proportion 0.75; }
+
+    preset-window-heights {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+    }
+
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        off
+        // off
 
         // How many logical pixels the ring extends out from the windows.
         width 2
@@ -200,11 +216,13 @@ window-rule {
     opacity 0.90
     open-on-workspace "code"
     default-column-width { proportion 0.80; }
+    draw-border-with-background false
 }
 window-rule {
     match app-id=r#"^discord$"#
     opacity 0.90
     open-on-workspace "oss"
+    draw-border-with-background false
 }
 window-rule {
     match app-id=r#"firefox"#
@@ -216,6 +234,7 @@ window-rule {
     opacity 0.90
     open-on-workspace "term"
     default-column-width { proportion 0.80; }
+    draw-border-with-background false
 }
 
 window-rule {
@@ -254,7 +273,7 @@ binds {
     Mod+B hotkey-overlay-title="Open a Browser " { spawn "firefox"; }
     Mod+O hotkey-overlay-title="Open a Obsidian " { spawn "obsidian"; }
     Mod+E hotkey-overlay-title="Open a FileManager " { spawn "nautilus"; }
-    Mod+D hotkey-overlay-title="Run an Application" { spawn-sh "wofi --show drun"; }
+    Mod+D hotkey-overlay-title="Run an Application" { spawn-sh "fuzzel"; }
     Super+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock "; }
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -278,8 +297,6 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
     Mod+TAB repeat=false { toggle-overview; }
-    // custom window selector with dmenu TODO
-    Mod+Shift+TAB repeat=false { spawn "~/.local/bin/nws.sh"; } 
 
     Mod+Q repeat=false { close-window; }
 
@@ -437,12 +454,12 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Minus { set-column-width "-25%"; }
+    Mod+Equal { set-column-width "+25%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Minus { set-window-height "-25%"; }
+    Mod+Shift+Equal { set-window-height "+25%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }

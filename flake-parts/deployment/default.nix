@@ -43,6 +43,9 @@ in {
                 # issues, thus allowing us perform conditional imports
                 local_flake.nixosModules.default
 
+                # Theming Engine for NixOS
+                inputs.stylix.nixosModules.stylix
+
                 # easy point to include overlays for now, probably want to paramterize
                 # this further down the line
                 {

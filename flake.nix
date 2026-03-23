@@ -18,6 +18,17 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.tinted-schemes.follows = "tinted-schemes";
+    };
+
+    tinted-schemes = {
+      flake = false;
+      url = "github:tinted-theming/schemes";
+    };
+
     # Nix + nightly CI Infra which automatically create derivations of every VSCode extension on the
     # MS Marketplace automatically. Occasionally breaks though, just give it until the next nightly
     # to fix
@@ -32,7 +43,6 @@
 
     # Additional Flakes I've started using
     treefmt-nix.url = "github:numtide/treefmt-nix"; # global formatting
-    catppuccin.url = "github:catppuccin/nix"; # Theming
     optnix.url = "github:water-sucks/optnix"; # Nix Options Searching TUI
     nixos-cli.url = "github:nix-community/nixos-cli";
   };
@@ -46,6 +56,7 @@
     flake-parts,
     treefmt-nix,
     niri,
+    stylix,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} ({flake-parts-lib, ...}: let

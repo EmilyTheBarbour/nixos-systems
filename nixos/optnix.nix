@@ -31,7 +31,6 @@ in {
             options-list-file = optnixLib.hm.mkOptionsListFromHMSource {
               home-manager = inputs.home-manager;
               modules = [
-                inputs.catppuccin.homeModules.catppuccin
               ];
             };
             evaluator = "nix eval ${parameters.machine.flake-location}#nixosConfigurations.${parameters.machine.name}.config.home-manager.users.${parameters.users.main-user.user-name}.{{ .Option }}";
