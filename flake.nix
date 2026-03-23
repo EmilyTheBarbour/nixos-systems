@@ -16,14 +16,17 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Nix Options support for niri wm
     niri.url = "github:sodiboo/niri-flake";
 
+    # Automatic Styling Across Multiple NixOS Components
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.tinted-schemes.follows = "tinted-schemes";
     };
 
+    # Stylix Style Sheets
     tinted-schemes = {
       flake = false;
       url = "github:tinted-theming/schemes";
