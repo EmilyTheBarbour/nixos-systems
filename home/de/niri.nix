@@ -72,7 +72,7 @@
         {proportion = 4. / 5.;}
       ];
       default-column-width = {proportion = 4. / 5.;};
-      focus-ring.width = 2;
+      focus-ring.width = lib.mkForce 2;
       shadow = {
         enable = true;
         draw-behind-window = true;
