@@ -45,7 +45,7 @@ in {
     ];
 
     home.shellAliases = let
-      code-path = lib.getExe config.programs.vscode.package;
+      code-path = lib.getExe config.programs.vscodium.package;
     in {
       "code" = code-path;
       "vscode" = code-path;
@@ -56,10 +56,7 @@ in {
     programs.neovim.enable = mkForce true;
 
     # Configure VSCode
-    programs.vscode = {
-      # Use the OSS Version that has AI stuff stripped out
-      package = pkgs.vscodium;
-
+    programs.vscodium = {
       enable = true;
 
       # prevent vscode from taking ownership of my extensiosn
